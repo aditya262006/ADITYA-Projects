@@ -1,6 +1,6 @@
-## 💰 `README.md` for Banking System
+# 💰 Banking Management System by Aditya Gupta
 
-```markdown
+
 # 💰 Banking System Project — Python Console & GUI
 
 This is a **Python-based Banking Management System** that supports both **console** and **GUI (Tkinter)** versions. It simulates basic banking operations such as account creation, deposit, withdrawal, and balance checks — using core **OOP concepts** and **file storage**.
