@@ -42,8 +42,8 @@ cd news-app
 ## 👨‍💻 About Me
 I'm Aditya Gupta, a Python enthusiast and web development learner passionate about combining tech with creativity.
 
-🔗 LinkedIn
-💻 GitHub
+🔗 [LinkedIn](https://www.linkedin.com/in/aditya-gupta-a2685b312)  
+💻 [GitHub](https://github.com/account)
 
 ## 💬 Final Quote
 "News is what somebody somewhere wants to suppress; all the rest is advertising." – Lord Northcliffe
