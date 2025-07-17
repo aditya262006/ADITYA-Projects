@@ -37,3 +37,13 @@ A desktop-based News Application that fetches and displays the latest headlines 
 ```bash
 git clone https://github.com/aditya262006/news-app.git
 cd news-app
+
+```
+## 👨‍💻 About Me
+I'm Aditya Gupta, a Python enthusiast and web development learner passionate about combining tech with creativity.
+
+🔗 LinkedIn
+💻 GitHub
+
+## 💬 Final Quote
+"News is what somebody somewhere wants to suppress; all the rest is advertising." – Lord Northcliffe
