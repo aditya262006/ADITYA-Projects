@@ -14,7 +14,7 @@ Just enter a movie name and instantly get suggestions with posters, descriptions
 
 
 
-🚀 About The Project
+## 🚀 About The Project
 
 
 
@@ -26,7 +26,7 @@ In a world with an overwhelming number of movie choices, this Movie Recommender 
 
 
 
-✨ Features
+## ✨ Features
 
 
 
@@ -42,7 +42,7 @@ In a world with an overwhelming number of movie choices, this Movie Recommender 
 
 
 
-🧠 What I Learned
+## 🧠 What I Learned
 
 
 
@@ -61,8 +61,7 @@ In a world with an overwhelming number of movie choices, this Movie Recommender 
 
 
 
-# 🌐 Live Demo & Source Code
-
+## 🌐 Live Demo & Source Code
 
 Check out the live application:
 
@@ -70,7 +69,7 @@ Live Demo 🔗:
 
 
 
-# 👨‍💻 About Me
+## 👨‍💻 About Me
 
 
 
