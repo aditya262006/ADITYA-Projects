@@ -1,5 +1,5 @@
-🎬 Movie Recommender Web App 
-                               - by Aditya Gupta
+# **bold** 🎬 Movie Recommender Web App 
+                 # **bold**               - by Aditya Gupta
 
 
 
@@ -66,15 +66,14 @@ In a world with an overwhelming number of movie choices, this Movie Recommender 
 
 
 Check out the live application:
-Live Demo 🔗: 
 
-Explore the source code: GitHub Repository 💻
-
+# Live Demo 🔗: 
 
 
 
 
-👨‍💻 About Me
+
+# 👨‍💻 About Me
 
 
 
