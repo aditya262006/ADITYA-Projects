@@ -1,5 +1,5 @@
 #  🎬 Movie Recommender Web App  
-#                                                              - by Aditya Gupta
+                                                         - by Aditya Gupta
 
 
 
@@ -79,10 +79,8 @@ Check out the live application:
 
 I'm Aditya Gupta, a passionate developer and a machine learning enthusiast. I enjoy building projects that solve real-world problems and provide tangible value.
 
-GitHub: https://github.com/account
-LinkedIn: https://www.linkedin.com/in/aditya-gupta-a2685b312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
-
-
+🔗 [LinkedIn](https://www.linkedin.com/in/aditya-gupta-a2685b312)  
+💻 [GitHub](https://github.com/account) 
 
 -----------------------------------------------------------------------------------------
 "The best way to predict the future is to create it." - Peter Drucker
