@@ -1,5 +1,5 @@
-# ** ** 🎬 Movie Recommender Web App  
-                                 - by Aditya Gupta
+# bold 🎬 Movie Recommender Web App  
+                                                               - by Aditya Gupta
 
 
 
