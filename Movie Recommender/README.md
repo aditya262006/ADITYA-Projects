@@ -61,15 +61,12 @@ In a world with an overwhelming number of movie choices, this Movie Recommender 
 
 
 
-🌐 Live Demo & Source Code
-
+# 🌐 Live Demo & Source Code
 
 
 Check out the live application:
 
-# Live Demo 🔗: 
-
-
+Live Demo 🔗: 
 
 
 
