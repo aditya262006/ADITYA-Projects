@@ -6,7 +6,7 @@
 
                                
 A web application that suggests movies to users based on their preferences 
-A smart and interactive movie recommendation system built using **Python**, **Flask**, **HTML/CSS**, and **TMDb API**.  
+A smart and interactive movie recommendation system built using **Python**, **Flask**, **HTML/CSS**, and **films dataset**.  
 Just enter a movie name and instantly get suggestions with posters, descriptions, and release dates.
 
 
