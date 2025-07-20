@@ -1,34 +1,61 @@
 # 👨‍💻 Aditya Gupta's Project Repository
 
-Welcome to my official project repository!  
-This GitHub space contains all of my **personal and academic projects**, built while learning and exploring **web development**, **machine learning**, **Python**, and more.
+Welcome to my official GitHub repository!  
+This space showcases my **personal and academic projects** built while learning and exploring **Web Development**, **Python**, **Machine Learning**, and more.
 
 ---
 
 ## 🗂️ Projects Included
 
 ### 🎬 Movie Recommender Web App
-- A Flask-based application that recommends movies based on your input using content-based filtering.
-- With Help of Python & Flask and HTML
+- A Flask-based app that recommends movies based on user input using content-based filtering.
+- Built with **Python**, **Flask**, and **HTML/CSS**.
+- Features: Genre detection, similarity matching, poster previews.
 
-### 📰 News App (Tkinter + API)
-- A desktop application that fetches and displays news headlines using the Mediastack API.
-- GUI built with Python’s Tkinter library.
+### 📰 News App (Tkinter + Mediastack API)
+- A desktop application that fetches and displays real-time news headlines.
+- Developed using **Python's Tkinter** GUI and **Mediastack API**.
+- Features: Search bar, filters, categories, responsive scrollable interface.
 
 ### 💰 Banking System (Console + GUI)
-- Banking system built using object-oriented Python.
-- GUI version includes features like login, account management, transactions, and more.
+- Console and GUI-based banking system using **advanced OOP concepts in Python**.
+- GUI version supports login, deposits, withdrawals, transfers, and transaction history.
+- Demonstrates inheritance, polymorphism, encapsulation, and file handling.
 
 ### 🔢 Scientific Calculator (Python Tkinter)
-- A fully functional scientific calculator built with **Python Tkinter**.
-- Supports basic operations, square root, power, trigonometric functions, backspace, etc.
-- UI styled to match real-world scientific calculator layout.
+- Fully functional scientific calculator with a real-world UI.
+- Features: Arithmetic, square root, power, trigonometry, backspace, clear.
+- Built using **Python** and **Tkinter** for GUI.
 
-### 📱 Stopwatch Web App (Frontend)
-- Simple stopwatch built using HTML, CSS, and JavaScript.
-- Responsive design and clean UI.
+### ⏱️ Stopwatch Web App (Frontend Only)
+- A lightweight, responsive stopwatch built with **HTML**, **CSS**, and **JavaScript**.
+- Clean UI, accurate timer functionality, and reset features.
 
-...and many more coming soon!
+### 🕹️ Game Manager App (MERN Stack)
+- A multi-game launcher with 8 games including logic puzzles, mind games, and tech quizzes.
+- Built using **MongoDB**, **Express**, **React**, and **Node.js** with HTML/CSS for styling.
+- Features: Sequential unlocking, ID-based access for special users, retry limits, and prize system.
+
+### 🌐 Web Digital Clock (City/World Time)
+- A web-based application to check the current time in any city or country.
+- Uses **World Time API** and search functionality for dynamic time display.
+- Built with **HTML**, **CSS**, **JavaScript**, and optional **API integration**.
+
+### ☁️ Weather App
+- A weather forecasting web app that shows current weather, temperature, humidity, and wind.
+- Built using **JavaScript** and **OpenWeatherMap API**.
+- Users can search by city/country to view real-time weather data.
+
+### 💱 Currency Converter (Global Currencies)
+- A responsive app that converts currencies between nearly all countries.
+- Uses live exchange rates through **ExchangeRate API** or similar.
+- Built with **HTML**, **CSS**, **JavaScript** (or Python version using Tkinter available).
+- Features: Real-time conversion, multi-currency support, dropdown UI.
+
+### 🌀 App Cloner (UI Clones of Famous Apps)
+- Frontend clones of popular apps including **Spotify**, **Zomato**, **Facebook**, **Instagram**, **Amazon**, and **YouTube**.
+- Created using **HTML**, **CSS**, and **JavaScript**.
+- Focused on layout design, responsiveness, and matching the original look & feel.
 
 ---
 
@@ -40,14 +67,14 @@ I'm **Aditya Gupta**, a Computer Science student passionate about:
 - 🛠️ Building smart and useful tools
 
 🔗 [LinkedIn](https://www.linkedin.com/in/aditya-gupta-a2685b312)  
-💻 [GitHub](https://github.com/account)
+💻 [GitHub](https://github.com/aditya262006)
 
 ---
 
 ## 📝 How to Use This Repo
 
 Each project is placed in a **separate folder** with:
-- Source code (`.py`, `.html`, etc.)
+- Source code (`.py`, `.html`, `.js`, etc.)
 - `README.md` for that project
 - Instructions to run or deploy
 
@@ -55,10 +82,3 @@ Clone this repo and explore the projects that interest you!
 
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
-
-```
-## 🧠 Final Thought
-
-"Code is like humor. When you have to explain it, it’s bad." – Cory House
-
-Thanks for visiting! ⭐ Star this repo if you find it useful.
