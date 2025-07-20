@@ -58,6 +58,11 @@ In a world with an overwhelming number of movie choices, this Movie Recommender 
 
 •Project Management: Managed the project from ideation and data collection to deployment.
 
+## 🚀 Live Demo
+
+🔗 [Click here to try it live](https://movie-recommender-0h62.onrender.com)
+
+---
 
 
 ## 👨‍💻 About Me
