@@ -22,15 +22,6 @@ This space showcases my **personal and academic projects** built while learning 
 - GUI version supports login, deposits, withdrawals, transfers, and transaction history.
 - Demonstrates inheritance, polymorphism, encapsulation, and file handling.
 
-### 🔢 Scientific Calculator (Python Tkinter)
-- Fully functional scientific calculator with a real-world UI.
-- Features: Arithmetic, square root, power, trigonometry, backspace, clear.
-- Built using **Python** and **Tkinter** for GUI.
-
-### ⏱️ Stopwatch Web App (Frontend Only)
-- A lightweight, responsive stopwatch built with **HTML**, **CSS**, and **JavaScript**.
-- Clean UI, accurate timer functionality, and reset features.
-
 ### 🕹️ Game Manager App (MERN Stack) ⭐
 - A multi-game launcher with 8 games including logic puzzles, mind games, and tech quizzes.
 - Built using **MongoDB**, **Express**, **React**, and **Node.js** with HTML/CSS for styling.
@@ -42,21 +33,49 @@ This space showcases my **personal and academic projects** built while learning 
 - Each block has:A coding challenge ,A logic puzzle ,A "bug" to fix Or a surprise item to solve in given time.
 - Players earn “Cash prize” by finishing the game with least time and required stats.
 
-### 🌐 Web Digital Clock (City/World Time)
-- A web-based application to check the current time in any city or country.
-- Uses **World Time API** and search functionality for dynamic time display.
-- Built with **HTML**, **CSS**, **JavaScript**, and optional **API integration**.
+# 🌟 SmartBox - All-in-One Utility Manager App  
 
-### ☁️ Weather App
-- A weather forecasting web app that shows current weather, temperature, humidity, and wind.
-- Built using **JavaScript** and **OpenWeatherMap API**.
-- Users can search by city/country to view real-time weather data.
+*SmartBox* is a multi-utility app that brings all your essential tools into one place. It is designed with a clean UI, responsive design, and smooth navigation so you can switch easily between utilities.  
 
-### 💱 Currency Converter (Global Currencies)
-- A responsive app that converts currencies between nearly all countries.
-- Uses live exchange rates through **ExchangeRate API** or similar.
-- Built with **HTML**, **CSS**, **JavaScript** (or Python version using Tkinter available).
-- Features: Real-time conversion, multi-currency support, dropdown UI.
+---
+
+## ✨ Features (Modules)  
+
+### 1️⃣ Scientific Calculator  
+- Fully functional calculator with advanced math features (arithmetic, square root, power, trigonometry, backspace).  
+- Built using *Python & Tkinter (GUI)*.  
+
+### 2️⃣ Stopwatch Web App  
+- Lightweight, responsive stopwatch built with *HTML, CSS & JavaScript*.  
+- Features start/stop, lap functionality, and reset.  
+
+### 3️⃣ Digital Clock  
+- Displays accurate system time in a modern UI.  
+- Built with *HTML, CSS & JavaScript*.  
+
+### 4️⃣ Weather App  
+- Fetches real-time weather data (temperature, humidity, wind speed, etc.) using *OpenWeather API*.  
+- Search weather by city or country with optional *Map integration*.  
+
+### 5️⃣ Currency Converter  
+- Converts currencies between nearly all countries using *ExchangeRate API*.  
+- Supports multi-currency and live exchange rate updates.  
+
+### 6️⃣ Unit Converter (Planned)  
+- Convert length, weight, volume, and more with a simple dropdown UI.  
+
+### 7️⃣ Notes/To-Do List (Planned)  
+- Create and manage notes and tasks with cloud sync support.  
+
+---
+
+## 🛠 Tech Stack  
+
+- *Frontend:* React (or pure HTML/CSS/JS for small tools) + TailwindCSS/Material UI  
+- *Backend:* Node.js (Express) for API integration (or direct API calls for lightweight modules)  
+- *Database:* MongoDB (optional) for saving user preferences  
+
+---
 
 ### 🌀 App Cloner (UI Clones of Famous Apps)
 - Frontend clones of popular apps including **Spotify**, **Zomato**, **Facebook**, **Instagram**, **Amazon**, and **YouTube**.
