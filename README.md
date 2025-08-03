@@ -27,7 +27,7 @@ This space showcases my **personal and academic projects** built while learning 
 - Built using **MongoDB**, **Express**, **React**, and **Node.js** with HTML/CSS for styling.
 - Features: Sequential unlocking, ID-based access for special users, retry limits, and prize system.
 - Techy & Engaging Game Simulation with Games and prizes.
-- Games like Code unlock,Logic Detective,Pattern Cracker,Tech Riddle,Memory Hacker,Hangman,Sudoku,Flappy Bird
+- Games like Code unlock,Logic Detective,Crack the Logic,Tech Riddle,Memory Hacker,Hangman,Sudoku,Guess the number.
 - Final Game Code Quest:Dice Adventure unlocks after completing 8 games 
 - Each player rolls a dice to move on a board (grid).
 - Each block has:A coding challenge ,A logic puzzle ,A "bug" to fix Or a surprise item to solve in given time.
