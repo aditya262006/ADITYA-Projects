@@ -21,7 +21,7 @@ This space showcases my **personal and academic projects** built while learning 
 - Console and GUI-based banking system using **advanced OOP concepts in Python**.
 - GUI version supports login, deposits, withdrawals, transfers, and transaction history.
 - Demonstrates inheritance, polymorphism, encapsulation, and file handling.
----
+
 ### 🕹️ Game Manager App (MERN Stack) ⭐
 - A multi-game launcher with 8 games including logic puzzles, mind games, and tech quizzes.
 - Built using **MongoDB**, **Express**, **React**, and **Node.js** with HTML/CSS for styling.
@@ -32,7 +32,7 @@ This space showcases my **personal and academic projects** built while learning 
 - Each player rolls a dice to move on a board (grid).
 - Each block has:A coding challenge ,A logic puzzle ,A "bug" to fix Or a surprise item to solve in given time.
 - Players earn “Cash prize” by finishing the game with least time and required stats.
----
+
 ### 🌟 SmartBox - All-in-One Utility Manager App  
 
 *SmartBox* is a multi-utility app that brings all your essential tools into one place. It is designed with a clean UI, responsive design, and smooth navigation so you can switch easily between utilities.  
@@ -58,17 +58,13 @@ This space showcases my **personal and academic projects** built while learning 
 - Converts currencies between nearly all countries using *ExchangeRate API*.  
 - Supports multi-currency and live exchange rate updates.  
 
-### 6️⃣ Unit Converter (Planned)  
+### 6️⃣ Unit Converter
 - Convert length, weight, volume, and more with a simple dropdown UI.  
-
-### 7️⃣ Notes/To-Do List (Planned)  
-- Create and manage notes and tasks with cloud sync support.  
+  
 ## 🛠 Tech Stack  
 - *Frontend:* React (or pure HTML/CSS/JS for small tools) + TailwindCSS/Material UI  
 - *Backend:* Node.js (Express) for API integration (or direct API calls for lightweight modules)  
 - *Database:* MongoDB (optional) for saving user preferences  
-
----
 
 ### 🌀 App Cloner (UI Clones of Famous Apps)
 - Frontend clones of popular apps including **Spotify**, **Zomato**, **Facebook**, **Instagram**, **Amazon**, and **YouTube**.
