@@ -97,7 +97,9 @@ Clone this repo and explore the projects that interest you!
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
-#🧠 Final Thought
+
+##🧠 Final Thought
+
 "Code is like humor. When you have to explain it, it’s bad." – Cory House
 
 Thanks for visiting! ⭐ Star this repo if you find it useful.
