@@ -97,6 +97,7 @@ Clone this repo and explore the projects that interest you!
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
+--- 
 
 ##🧠 Final Thought
 
