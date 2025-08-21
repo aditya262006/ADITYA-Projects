@@ -99,7 +99,7 @@ git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
 --- 
 
-##🧠 Final Thought
+🧠 Final Thought
 
 "Code is like humor. When you have to explain it, it’s bad." – Cory House
 
