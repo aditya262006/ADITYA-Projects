@@ -13,9 +13,6 @@ This space showcases my **personal and academic projects** built while learning 
 - Features: Genre detection, similarity matching, poster previews.  
 - Includes **frontend previews with movie posters** for better user experience.  
 
-📸 *Preview:*  
-![Movie Recommender Screenshot](images/movie_recommender.png)  
-
 ---
 
 ### 📰 News Application 
@@ -24,9 +21,6 @@ This space showcases my **personal and academic projects** built while learning 
 - Features: Search bar, filters, categories, responsive scrollable interface.  
 - Added **UI screenshots for a modern look**.  
 
-📸 *Preview:*  
-![News App Screenshot](images/news_app.png)  
-
 ---
 
 ### 💰 Banking System   
@@ -34,9 +28,6 @@ This space showcases my **personal and academic projects** built while learning 
 - GUI version supports login, deposits, withdrawals, transfers, and transaction history.  
 - Demonstrates inheritance, polymorphism, encapsulation, and file handling.  
 - Showcased with **screenshots of the GUI Banking Dashboard**.  
-
-📸 *Preview:*  
-![Banking System Screenshot](images/banking_system.png)  
 
 ---
 
@@ -64,9 +55,6 @@ This space showcases my **personal and academic projects** built while learning 
   - 💻 A coding challenge  
   - 🐞 A “bug” to fix  
   - 🎁 A surprise reward  
-
-📸 *Preview:*  
-![CodeQuest Dice Adventure Screenshot(https://github.com/a89c2a48-8936-49ee-ab2c-4b8f8f29deaf)  
 
 ---
 
