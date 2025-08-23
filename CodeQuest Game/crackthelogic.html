@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crack the Logic</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00ffe7;
+      width: 90%;
+      max-width: 650px;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      color: #00ffe7;
+      margin-top: 0;
+    }
+    .question {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      min-height: 50px;
+    }
+    .options button, .controls button, .drawing-container button {
+      background: #292929;
+      color: #ffffff;
+      border: 1px solid #00ffe7;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .options button {
+        width: 45%;
+    }
+    .options button:hover, .controls button:hover, .drawing-container button:hover {
+      background: #00ffe7;
+      color: #000;
+    }
+    .options button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+    .lives {
+      font-weight: bold;
+      color: #ff4d4d;
+    }
+    .explanation {
+      display: none;
+      background: #0d0d0d;
+      border: 1px solid #00ffe7;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+      color: #c8ffff;
+    }
+    .drawing-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    canvas {
+      background: #fff;
+      border: 2px solid #00ffe7;
+      border-radius: 10px;
+      cursor: crosshair;
+      margin-top: 15px;
+    }
+    #helpBtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        padding: 0;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-content {
+        background: #1a1a1a;
+        padding: 25px;
+        border: 1px solid #00ffe7;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+    }
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="helpBtn">?</button>
+    <h1>🧠 Crack the Logic</h1>
+    <div class="level">Question: <span id="level">1</span> / 5</div>
+    <div class="lives">Lives: <span id="lives">3</span></div>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="explanation" id="explanationBox"></div>
+    <div class="controls" id="controls"></div>
+    <div class="drawing-container">
+      <h3>📝 Drawing Pad</h3>
+      <canvas id="drawingPad" width="600" height="150"></canvas><br>
+      <button onclick="clearCanvas()">🧹 Clear Pad</button>
+    </div>
+  </div>
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>How to Play</h2>
+        <p>Your goal is to solve a series of 5 logic puzzles. You have 3 lives to complete all the questions.</p>
+        <ul>
+            <li>Read each question carefully.</li>
+            <li>Select the answer you think is correct from the options provided.</li>
+            <li>If your answer is incorrect, you will lose one life.</li>
+            <li>You can use the drawing pad at the bottom to work out your solutions.</li>
+        </ul>
+        <p>If you run out of lives, the game is over. If you answer all 5 questions, you win!</p>
+    </div>
+  </div>
+  <script>
+    const questionPool = [
+        { q: "Find the next number in the series: 4, 10, 22, 46, ...?", a: "94", options: ["88", "94", "90", "86"], explanation: "The pattern is (previous number × 2) + 2. So, (46 × 2) + 2 = 92 + 2 = 94." },
+        { q: "Find the missing term: BDF, HJL, NPR, ...?", a: "TVX", options: ["SUW", "TVX", "TWY", "UVY"], explanation: "Each group of letters skips one letter (B-C-D, D-E-F). The next group starts three letters after the last one (F-G-H-I). Following NPR, the next start is T (R-S-T-U), so the group is TVX." },
+        { q: "Find the next number in the series: 3, 4, 7, 11, 18, 29, ...?", a: "47", options: ["40", "43", "47", "51"], explanation: "This is a Fibonacci-like sequence where each number is the sum of the two preceding ones. 3+4=7, 4+7=11, ..., so the next number is 18+29=47." },
+        { q: "If 'CIRCLE' is coded as 'XRIXLV', how is 'SQUARE' coded?", a: "HJFZIV", options: ["HJFZIV", "HJVZIF", "HZFJVI", "HIFZJV"], explanation: "This is an Atbash cipher, where each letter is replaced by its reverse in the alphabet (A=Z, B=Y, C=X, etc.). S becomes H, Q becomes J, and so on." },
+        { q: "Find the next number in the series: 8, 24, 12, 36, 18, 54, ...?", a: "27", options: ["27", "60", "72", "108"], explanation: "This is an alternating series of operations: multiply by 3, then divide by 2. 8×3=24, 24÷2=12, 12×3=36, 36÷2=18, 18×3=54, so the next is 54÷2=27." },
+        { q: "Find the missing term: FAG, GAF, HAI, IAH, ...?", a: "JAK", options: ["JAK", "HAL", "HAK", "JAI"], explanation: "This is a two-part pattern. The first and last letters move forward in the alphabet (F-G, G-H, H-I, I-J). The middle letter is always 'A'. The pattern also swaps the first and last letters every two terms." },
+        { q: "Find the next number in the series: 589654237, 89654237, 8965423, 965423, ...?", a: "96542", options: ["96542", "65423", "96523", "89654"], explanation: "The pattern removes one digit from the number in an alternating sequence: first from the left, then from the right. First 5 is removed, then 7, then 8. The next step is to remove the last digit, 3, leaving 96542." },
+        { q: "In a certain code, 'RIVER' is written as '12351'. How is 'DRIVER' written in that code?", a: "412351", options: ["412351", "421351", "412531", "123514"], explanation: "By comparing RIVER and DRIVER, we see that D is the only new letter. The code for RIVER is a direct substitution. Therefore, DRIVER simply adds the code for D to the front of RIVER's code." },
+        { q: "What is the next term in the series: 1, 8, 27, 64, 125, ...?", a: "216", options: ["196", "216", "243", "256"], explanation: "The series consists of perfect cubes: 1³, 2³, 3³, 4³, 5³. The next number is 6³, which is 216." },
+        { q: "Find the next term in the alphabet series: A, CD, GHI, ...?, UVWXY", a: "MNOP", options: ["LMNO", "MNPQ", "MNOP", "NOPQ"], explanation: "The number of letters in each term increases by one (1, 2, 3, 4, 5). The series skips the next letter in the alphabet between terms. After A comes B (skipped), then CD. After D comes E, F (skipped), then GHI. After I comes J, K, L, M (skipped). So the next term is MNOP." }
+    ];
+    let gameQuestions = [];
+    let current = 0;
+    let lives = 3;
+    const questionsPerGame = 5;
+    function startGame() {
+        const shuffled = [...questionPool].sort(() => 0.5 - Math.random());
+        gameQuestions = shuffled.slice(0, questionsPerGame);
+        current = 0;
+        lives = 3;
+        document.getElementById("lives").innerText = lives;
+        document.getElementById("level").innerText = `1 / ${questionsPerGame}`;
+        loadQuestion();
+    }
+    function loadQuestion() {
+        const question = gameQuestions[current];
+        document.getElementById("question").innerText = question.q;
+        document.getElementById("level").innerText = `${current + 1} / ${questionsPerGame}`;
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+        question.options.forEach(opt => {
+            const btn = document.createElement("button");
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(opt);
+            optionsDiv.appendChild(btn);
+        });
+        document.getElementById("explanationBox").style.display = "none";
+        document.getElementById("controls").innerHTML = "";
+    }
+    function checkAnswer(selected) {
+        const question = gameQuestions[current];
+        const correct = selected.toLowerCase() === question.a.toLowerCase();
+        if (!correct) {
+            lives--;
+            document.getElementById("lives").innerText = lives;
+        }
+        showExplanation(correct);
+    }
+    function showExplanation(isCorrect) {
+        const question = gameQuestions[current];
+        const explanationBox = document.getElementById("explanationBox");
+        const optionsButtons = document.querySelectorAll(".options button");
+        optionsButtons.forEach(btn => btn.disabled = true);
+        explanationBox.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong><br>${question.explanation}`;
+        explanationBox.style.display = "block";
+        const nextButton = document.createElement("button");
+        document.getElementById("controls").appendChild(nextButton);
+        if (lives <= 0 || current === gameQuestions.length - 1) {
+            nextButton.textContent = "Finish";
+            nextButton.onclick = () => endGame(lives > 0);
+        } else {
+            nextButton.textContent = "Next Question →";
+            nextButton.onclick = () => {
+                current++;
+                loadQuestion();
+            };
+        }
+    }
+    function endGame(isVictory) {
+        const questionDiv = document.getElementById("question");
+        const optionsDiv = document.getElementById("options");
+        const controlsDiv = document.getElementById("controls");
+        optionsDiv.innerHTML = "";
+        controlsDiv.innerHTML = ""; 
+        document.getElementById("explanationBox").style.display = "none";
+        const endButton = document.createElement("button");
+        if (isVictory) {
+            questionDiv.innerText = "🎉 You cracked all the logic puzzles!";
+            endButton.textContent = "Return to Board";
+            endButton.onclick = () => { window.location.href = 'board.html'; };
+        } else {
+            questionDiv.innerText = "😢 Game Over. You ran out of lives.";
+            endButton.textContent = "Exit Game";
+            endButton.onclick = () => { window.close(); };
+        }
+        controlsDiv.appendChild(endButton);
+    }
+    // --- Drawing Pad Logic ---
+    const canvas = document.getElementById("drawingPad");
+    const ctx = canvas.getContext("2d");
+    ctx.lineWidth = 2;
+    let drawing = false;
+    canvas.addEventListener("mousedown", (e) => {
+        drawing = true;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    });
+    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener("mouseout", () => drawing = false);
+    canvas.addEventListener("mousemove", (e) => {
+        if (!drawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    });
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+    }
+    // --- Modal Logic ---
+    const helpModal = document.getElementById("helpModal");
+    const helpBtn = document.getElementById("helpBtn");
+    const closeBtn = document.querySelector(".close-button");
+    helpBtn.onclick = () => { helpModal.style.display = "flex"; }
+    closeBtn.onclick = () => { helpModal.style.display = "none"; }
+    window.onclick = (e) => {
+        if (e.target == helpModal) {
+            helpModal.style.display = "none";
+        }
+    }
+    startGame();
+  </script>
+</body>
+</html>

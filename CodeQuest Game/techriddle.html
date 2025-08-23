@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tech Riddle Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --box-bg: #1e293b;
+            --accent-main: #00e676;
+            --accent-secondary: #00f7ff;
+            --text-color: #f8fafc;
+            --error-color: #ef4444;
+            --highlight-color: #ffca3a;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark), #0d1222);
+            color: var(--text-color);
+            text-align: center;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .riddle-box {
+            background-color: var(--box-bg);
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.15), 0 0 10px rgba(0, 247, 255, 0.1);
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 3rem;
+            color: var(--accent-main);
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        #help-button {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: none;
+            border: 2px solid var(--accent-secondary);
+            color: var(--accent-secondary);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        #help-button:hover {
+            background: var(--accent-secondary);
+            color: var(--bg-dark);
+        }
+        input, button {
+            margin-top: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+        }
+        input {
+            background-color: #334155;
+            color: var(--text-color);
+            width: 80%;
+            max-width: 400px;
+        }
+        input::placeholder {
+            color: #94a3b8;
+        }
+        button {
+            background: var(--accent-secondary);
+            color: var(--bg-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background: #00d2e0;
+        }
+        #status, #level {
+            margin-top: 20px;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+        .hint {
+            display: block;
+            margin-top: 15px;
+            color: var(--highlight-color);
+            font-style: italic;
+            font-size: 1rem;
+        }
+        .controls {
+            margin-top: 25px;
+        }
+        .controls button {
+            background-color: var(--accent-main);
+            color: var(--bg-dark);
+            border: none;
+        }
+        .controls button:hover {
+            background-color: #00c25a;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--box-bg);
+            padding: 25px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            text-align: left;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.15);
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            text-align: center;
+            color: var(--accent-secondary);
+            margin-top: 0;
+            font-family: 'VT323', monospace;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="riddle-box">
+        <div class="header">
+            <h1>Tech Riddle</h1>
+            <button id="help-button">?</button>
+        </div>
+        <h2 id="level">Level: Easy</h2>
+        <p id="riddle">Loading riddle...</p>
+        <input type="text" id="answer" placeholder="Your answer..." />
+        <br>
+        <button onclick="submitAnswer()">Submit</button>
+        <button onclick="showHint()">Hint</button>
+        <p id="hint" class="hint"></p>
+        <p id="status"></p>
+        <div class="controls"></div>
+    </div>
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>How to Play</h2>
+            <p>Your goal is to solve a series of 3 tech riddles with increasing difficulty.</p>
+            <ul>
+                <li>You start with 3 guesses per riddle.</li>
+                <li>Each incorrect answer reduces your guess count by one.</li>
+                <li>If you solve a riddle, your guesses are reset for the next level.</li>
+                <li>If you run out of guesses, you lose the game.</li>
+                <li>Use the hint button if you get stuck, but try to solve it on your own first!</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const riddlePool = {
+            easy: [
+                { q: "You write me once, but I can be executed many times. What am I?", a: ["function", "method", "procedure"], hint: "Think programming reusability." },
+                { q: "I represent a unique location in memory, but I'm not a physical address. What am I?", a: ["variable", "pointer", "reference"], hint: "I hold a value and have a name." },
+                { q: "I have a head and a tail, but no body. I grow and shrink dynamically. What am I?", a: ["linked list", "queue", "stack"], hint: "Nodes connect me together." },
+                { q: "I am a 0 or a 1, but I rule the digital world. What am I?", a: ["bit"], hint: "Smallest unit of data." },
+                { q: "I am a box with keys but no locks, letters but no mail, and space but no room. What am I?", a: ["keyboard"], hint: "You use me to type." },
+                { q: "I keep track of your browser history but not in a database. What am I?", a: ["cache", "cookies", "local storage"], hint: "I help speed up webpage loading." }
+            ],
+            medium: [
+                { q: "You are given an unsorted array. What algorithm can find an element in O(log n) time?", a: ["binary search"], hint: "It requires a sorted array first, but it's very fast." },
+                { q: "What's the difference between GET and POST?", a: ["get is visible", "post is secure", "url parameters"], hint: "One is for fetching data, the other for sending it." },
+                { q: "I'm a container of unique, unordered values. What am I?", a: ["set", "hash set"], hint: "I’m good for checking if something exists quickly." },
+                { q: "What is the time complexity of binary search?", a: ["log n", "o(log n)"], hint: "Divide and conquer." },
+                { q: "I connect frontend to backend, often with fetch or axios. What am I?", a: ["api", "rest api"], hint: "Middleman of the web." },
+                { q: "I am the invisible enemy of performance. You fix me using debounce or throttle. What am I?", a: ["lag", "event spam", "uncontrolled events"], hint: "Scroll or resize events might trigger me." }
+            ],
+            hard: [
+                { q: "I'm a puzzle you can't brute-force due to time. You must be optimal. What CS problem am I?", a: ["np complete", "np hard", "tsp", "knapsack"], hint: "Problems needing dynamic or approximation." },
+                { q: "How do you detect a cycle in a linked list?", a: ["floyd cycle", "two pointers", "slow fast pointer"], hint: "One pointer runs faster than the other." },
+                { q: "You’re given a locked safe with a digital keypad. You can try any number but only once. What algorithm helps reduce your total tries?", a: ["de bruijn sequence", "brute force", "binary search"], hint: "Cover all combinations efficiently." },
+                { q: "I am a way to implement polymorphism by using an object's prototype. What am I?", a: ["prototypal inheritance", "class inheritance", "composition"], hint: "I'm a key concept in JavaScript before ES6 classes." },
+                { q: "I am the standard that defines how a web server should communicate with a client. What am I?", a: ["http", "tcp", "ip"], hint: "I'm the 'h' in http." },
+                { q: "I am a type of tree where every node's value is greater than all values in its left subtree and less than all in its right. What am I?", a: ["binary search tree", "bst"], hint: "I make searching very efficient." }
+            ]
+        };
+        let riddles = [];
+        let current = 0;
+        let guesses = 3;
+        const helpModal = document.getElementById("help-modal");
+        const helpButton = document.getElementById("help-button");
+        const closeButton = document.querySelector(".close-button");
+        function getRandomRiddle(arr) {
+            return arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
+        }
+        function setupGame() {
+            const easyR = [...riddlePool.easy];
+            const medR = [...riddlePool.medium];
+            const hardR = [...riddlePool.hard];
+
+            riddles = [
+                getRandomRiddle(easyR),
+                getRandomRiddle(medR),
+                getRandomRiddle(hardR)
+            ];
+            current = 0;
+            guesses = 3;
+            loadRiddle();
+        }
+        function loadRiddle() {
+            document.getElementById("riddle").textContent = riddles[current].q;
+            document.getElementById("level").textContent = "Level: " + ["Easy", "Medium", "Hard"][current];
+            document.getElementById("answer").value = "";
+            document.getElementById("status").textContent = `You have ${guesses} guesses left.`;
+            document.getElementById("hint").textContent = "";
+            document.getElementById("answer").style.display = "inline-block";
+            document.querySelectorAll(".riddle-box > button:not(#help-button)").forEach(btn => btn.style.display = 'inline-block');
+            document.querySelector(".controls").innerHTML = '';
+        }
+        function showHint() {
+            document.getElementById("hint").textContent = "💡 Hint: " + riddles[current].hint;
+        }
+        function submitAnswer() {
+            const userAns = document.getElementById("answer").value.trim().toLowerCase();
+            const validAnswers = riddles[current].a.map(a => a.toLowerCase());
+            if (validAnswers.some(ans => userAns.includes(ans))) {
+                document.getElementById("status").textContent = "✅ Correct!";
+                current++;
+                if (current < riddles.length) {
+                    guesses = 3;
+                    setTimeout(loadRiddle, 1500);
+                } else {
+                    document.getElementById("riddle").textContent = "🎉 You solved all the riddles!";
+                    document.getElementById("level").textContent = "Victory!";
+                    endGame(true);
+                }
+            } else {
+                guesses--;
+                if (guesses > 0) {
+                    document.getElementById("status").textContent = `❌ Incorrect! ${guesses} guesses left.`;
+                } else {
+                    document.getElementById("status").textContent = "💀 Game Over. You failed this level.";
+                    document.getElementById("riddle").textContent = `The correct answer involved: ${riddles[current].a[0]}`;
+                    endGame(false);
+                }
+            }
+        }       
+        function endGame(isVictory) {
+            document.getElementById("answer").style.display = "none";
+            document.querySelectorAll(".riddle-box > button:not(#help-button)").forEach(btn => btn.style.display = 'none');
+            document.getElementById("hint").textContent = "";   
+            const controls = document.querySelector(".controls");
+            controls.innerHTML = '';
+            const endButton = document.createElement('button');
+            if (isVictory) {
+                endButton.textContent = '🏆 Return to Board';
+                endButton.onclick = () => { window.location.href = 'board.html'; };
+            } else {
+                endButton.textContent = 'Exit Game';
+                endButton.onclick = () => { window.close(); };
+            }
+            controls.appendChild(endButton);
+        }
+        // Modal Logic
+        helpButton.onclick = () => { helpModal.style.display = "flex"; };
+        closeButton.onclick = () => { helpModal.style.display = "none"; };
+        window.onclick = (e) => {
+            if (e.target === helpModal) {
+                helpModal.style.display = "none";
+            }
+        };
+        setupGame();
+    </script>
+</body>
+</html>

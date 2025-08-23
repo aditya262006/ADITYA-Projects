@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Memory Hacker</title>
+    <style>
+        :root {
+            --bg-color: #0b0c1a;
+            --text-color: #00f7ff;
+            --tile-color: #121828;
+            --tile-border: #00f7ff;
+            --tile-active: #00f7ff;
+            --tile-correct: #00e676;
+            --tile-wrong: #ff1744;
+            --btn-bg: #00f7ff;
+            --btn-color: #000;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 30px;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        #help-button {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: 2px solid var(--text-color);
+            color: var(--text-color);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .tile {
+            width: 80px;
+            height: 80px;
+            background-color: var(--tile-color);
+            border: 2px solid var(--tile-border);
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            cursor: pointer;
+            box-shadow: 0 0 5px #00f7ff55;
+        }
+
+        .tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px #00f7ff99;
+        }
+
+        .tile.active {
+            background-color: var(--tile-active);
+        }
+
+        .tile.correct {
+            background-color: var(--tile-correct);
+            box-shadow: 0 0 10px #00ff99;
+        }
+
+        .tile.wrong {
+            background-color: var(--tile-wrong);
+            box-shadow: 0 0 10px #ff3366;
+        }
+
+        #status, #lives, #level {
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: var(--btn-bg);
+            color: var(--btn-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #00e5ff;
+        }
+
+        #controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            border: 2px solid var(--tile-border);
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            color: var(--tile-active);
+        }
+        .modal-content ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 Memory Hacker</h1>
+        <button id="help-button">?</button>
+    </div>
+    <div id="level">Level: Easy</div>
+    <div id="status">Loading...</div>
+    <div id="lives">Lives: 3</div>
+    <div id="grid"></div>
+
+    <div id="controls">
+        <button onclick="startGame()">🔁 Restart</button>
+        <button onclick="toggleMusic()" id="musicBtn">🔊 Mute</button>
+        <button onclick="toggleTheme()">🎨 Theme</button>
+    </div>
+    
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>How to Play</h2>
+            <p>Your objective is to repeat the sequence of flashing tiles.</p>
+            <ul>
+                <li>The game starts at the Easy level.</li>
+                <li>A sequence of tiles will flash. Watch carefully!</li>
+                <li>Click the tiles in the exact same order they flashed.</li>
+                <li>With each correct sequence, you advance to the next level.</li>
+                <li>Lives are reduced for incorrect guesses. The game ends when you run out of lives.</li>
+                <li>On "Hard" and "Ultra Hard" levels, you get extra chances per mistake before losing a life.</li>
+            </ul>
+        </div>
+    </div>
+
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" preload="auto"></audio>
+    <audio id="correctSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
+    <audio id="wrongSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" preload="auto"></audio>
+    <audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-scifi.mp3" loop preload="auto"></audio>
+    <script>
+        const grid = document.getElementById("grid");
+        const statusText = document.getElementById("status");
+        const livesDisplay = document.getElementById("lives");
+        const levelDisplay = document.getElementById("level");
+        const controlsDiv = document.getElementById("controls");
+        const clickSound = document.getElementById("clickSound");
+        const correctSound = document.getElementById("correctSound");
+        const wrongSound = document.getElementById("wrongSound");
+        const bgMusic = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+        const helpModal = document.getElementById("help-modal");
+        const helpButton = document.getElementById("help-button");
+        const closeButton = document.querySelector(".close-button");
+
+        const levels = [
+            { name: "Easy", size: 3, length: 3, lives: 3, delay: 800 },
+            { name: "Medium", size: 4, length: 5, lives: 2, delay: 700 },
+            { name: "Hard", size: 5, length: 7, lives: 1, delay: 600 },
+            { name: "Ultra Hard", size: 6, length: 9, lives: 1, delay: 500 },
+        ];
+        let currentLevel = 0;
+        let sequence = [];
+        let userSequence = [];
+        let lives = 3;
+        let tileCount = 9;
+        let isDark = true;
+        let chancesUsed = 0; 
+        
+        function createGrid(size) {
+            grid.innerHTML = '';
+            tileCount = size * size;
+            grid.style.gridTemplateColumns = `repeat(${size}, 80px)`;
+            for (let i = 0; i < tileCount; i++) {
+                const tile = document.createElement("div");
+                tile.classList.add("tile");
+                tile.dataset.index = i;
+                tile.addEventListener("click", () => handleClick(i));
+                grid.appendChild(tile);
+            }
+        }
+        function generateSequence(length) {
+            sequence = [];
+            while (sequence.length < length) {
+                const num = Math.floor(Math.random() * tileCount);
+                if (!sequence.includes(num)) sequence.push(num);
+            }
+        }
+        async function showSequence(delay) {
+            const tiles = document.querySelectorAll(".tile");
+            grid.style.pointerEvents = 'none'; 
+            statusText.innerText = "Memorize the pattern...";
+            for (let i = 0; i < sequence.length; i++) {
+                const idx = sequence[i];
+                tiles[idx].classList.add("active");
+                await new Promise(r => setTimeout(r, delay));
+                tiles[idx].classList.remove("active");
+                await new Promise(r => setTimeout(r, 200));
+            }
+            statusText.innerText = "Your turn!";
+            grid.style.pointerEvents = 'auto';
+        }
+        function handleClick(index) {
+            if (!sequence.length || grid.style.pointerEvents === 'none') return;
+            clickSound.currentTime = 0;
+            clickSound.play();
+            const expected = sequence[userSequence.length];
+            const tiles = document.querySelectorAll(".tile");
+            if (index === expected) {
+                correctSound.currentTime = 0;
+                correctSound.play();
+                tiles[index].classList.add("correct");
+                userSequence.push(index);
+                setTimeout(() => tiles[index].classList.remove("correct"), 400);
+                if (userSequence.length === sequence.length) {
+                    statusText.innerText = "✅ Correct!";
+                    setTimeout(nextLevel, 1000);
+                }
+            } else {
+                wrongSound.currentTime = 0;
+                wrongSound.play();
+                tiles[index].classList.add("wrong");
+                setTimeout(() => tiles[index].classList.remove("wrong"), 400);
+                const level = levels[currentLevel];
+                if (level.name === 'Ultra Hard' && chancesUsed < 2) {
+                    chancesUsed++;
+                    statusText.innerText = `❌ Mistake! Watch again (${2 - chancesUsed} chances left).`;
+                    userSequence = [];
+                    setTimeout(() => showSequence(level.delay), 1500);
+                } else if (level.name === 'Hard' && chancesUsed < 1) {
+                    chancesUsed++;
+                    statusText.innerText = "❌ Mistake! Watch again carefully.";
+                    userSequence = [];
+                    setTimeout(() => showSequence(level.delay), 1500);
+                } else {
+                    lives--;
+                    livesDisplay.innerText = `Lives: ${lives}`;
+                    statusText.innerText = "❌ Wrong!";
+                    userSequence = [];
+                    if (lives <= 0) {
+                        endGame(false);
+                    }
+                }
+            }
+        }
+        function endGame(isVictory) {
+            sequence = []; 
+            grid.innerHTML = ''; 
+            controlsDiv.innerHTML = ''; 
+            const endButton = document.createElement("button");
+            if (isVictory) {
+                statusText.innerText = "🎉 Hack Successful! You're a memory legend!";
+                endButton.textContent = "Return to Board";
+                endButton.onclick = () => { window.location.href = 'board.html'; };
+            } else {
+                statusText.innerText = `💀 Game Over at ${levels[currentLevel].name} level`;
+                endButton.textContent = "Exit Game";
+                endButton.onclick = () => { window.close(); };
+            }
+            controlsDiv.appendChild(endButton);
+        }
+        async function loadLevel() {
+            const level = levels[currentLevel];
+            chancesUsed = 0;
+            levelDisplay.innerText = `Level: ${level.name}`;
+            lives = level.lives;
+            livesDisplay.innerText = `Lives: ${lives}`;
+            userSequence = [];
+            createGrid(level.size);
+            generateSequence(level.length);
+            await new Promise(r => setTimeout(r, 1000));
+            showSequence(level.delay);
+        }
+        function nextLevel() {
+            currentLevel++;
+            if (currentLevel >= levels.length) {
+                endGame(true);
+            } else {
+                loadLevel();
+            }
+        }
+        function startGame() {
+            currentLevel = 0;
+            loadLevel();
+        }
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicBtn.innerText = "🔊 Mute";
+            } else {
+                bgMusic.pause();
+                musicBtn.innerText = "🔈 Unmute";
+            }
+        }
+        function toggleTheme() {
+            if (isDark) {
+                document.documentElement.style.setProperty('--bg-color', '#f5f5f5');
+                document.documentElement.style.setProperty('--text-color', '#000');
+                document.documentElement.style.setProperty('--tile-color', '#fff');
+                document.documentElement.style.setProperty('--tile-border', '#444');
+                document.documentElement.style.setProperty('--btn-bg', '#000');
+                document.documentElement.style.setProperty('--btn-color', '#fff');
+            } else {
+                document.documentElement.style.setProperty('--bg-color', '#0b0c1a');
+                document.documentElement.style.setProperty('--text-color', '#00f7ff');
+                document.documentElement.style.setProperty('--tile-color', '#121828');
+                document.documentElement.style.setProperty('--tile-border', '#00f7ff');
+                document.documentElement.style.setProperty('--btn-bg', '#00f7ff');
+                document.documentElement.style.setProperty('--btn-color', '#000');
+            }
+            isDark = !isDark;
+        }
+        document.body.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.volume = 0.4;
+                bgMusic.play().catch(() => {});
+            }
+        }, { once: true });      
+        helpButton.onclick = () => { helpModal.style.display = 'flex'; };
+        closeButton.onclick = () => { helpModal.style.display = 'none'; };
+        window.onclick = (e) => {
+            if (e.target === helpModal) {
+                helpModal.style.display = 'none';
+            }
+        };
+        startGame();
+    </script>
+</body>
+</html>

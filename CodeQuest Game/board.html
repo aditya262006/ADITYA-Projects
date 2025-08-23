@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Adventure Quest Board Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Board Colors */
+    --bg-1: #6a8a3a;
+    --bg-2: #4e6b26;
+    --stone: #a18a6c;
+    --stone-dark:#7a664d;
+    --edge:#4a3c2a;
+    --accent-star: #ffd700;
+    --accent-q: #e0e0d1;
+    --pawn-dark: #1e3a8a;
+    --pawn-light: #60a5fa;
+
+    /* Dice Colors & Vars */
+    --dice-size: 80px;
+    --dice-dur: 1600ms;
+    --dice-card: linear-gradient(180deg,#ffffff,#f0f0f5);
+    --dice-pip: radial-gradient(circle at 30% 30%, #0b2250, #00122a);
+  }
+
+  html,body{height:100%;margin:0;font-family:'Inter',system-ui,Segoe UI,Helvetica,Arial;overflow:hidden;}
+  
+  body{
+    background: radial-gradient(ellipse at center, #3a5a40 0%, #1e2a21 100%);
+    display:flex;align-items:center;justify-content:center;
+    flex-direction: column;
+  }
+  /* ========== NEW TITLE STYLES ========== */
+  .title-container {
+    text-align: center;
+    margin-bottom: 2vmin;
+    color: #f0e6d2;
+  }
+  .title-container h1 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(2rem, 6vmin, 4rem);
+    margin: 0;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.7), 0 0 2px #fff;
+    letter-spacing: 3px;
+  }
+  /* ========== BOARD & TILE STYLES ========== */
+  .wrap {
+    width: min(92vmin, 800px);
+    height: min(92vmin, 800px);
+    display:grid; place-items:center; padding: 2.5vmin; box-sizing:border-box;
+    background: linear-gradient(165deg, #5a4a3a 0%, #3b2e21 100%);
+    border-radius: 22px;
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,0.6),
+        0 25px 60px rgba(0,0,0,0.6),
+        0 8px 15px rgba(0,0,0,0.4),
+        inset 0 3px 1px rgba(255,255,255,0.1),
+        inset 0 -3px 1px rgba(0,0,0,0.2);
+    border: 3px solid #3b2b1d;
+  }
+  .board {
+    width:100%; height:100%; display:grid;
+    grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr);
+    gap: 1.2vmin; position:relative;
+  }
+  .cell {
+    position:relative; overflow:visible; border-radius: 8px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3); transform: translateZ(0);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .cell:hover{ transform: translateY(-6px); box-shadow: 0 22px 40px rgba(0,0,0,0.4) }
+  .fill {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.03)),
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0 1px, transparent 1px 14px),
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03), transparent 20%),
+      linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    border: 2px solid rgba(0,0,0,0.25);
+  }
+  .path {
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.1), transparent 8%),
+      linear-gradient(180deg, var(--stone), var(--stone-dark));
+    border: 3px solid var(--edge); box-shadow: inset 0 -10px 18px rgba(0,0,0,0.35);
+  }
+  .path::before{
+    content:''; position:absolute; left:14%; top:14%; width:72%; height:72%; border-radius:6px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.1)),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0 3px, rgba(255,255,255,0.02) 3px 6px);
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.4); z-index:1;
+  }
+  .conn-up::after, .conn-down::after, .conn-left::after, .conn-right::after {
+    content:''; position:absolute; z-index:0; border-radius:4px;
+    background: linear-gradient(180deg, var(--stone), var(--stone-dark));
+    border: 3px solid var(--edge);
+  }
+  .conn-up::after{ left:26%; top:-14%; width:48%; height:28%; }
+  .conn-down::after{ left:26%; bottom:-14%; width:48%; height:28%; }
+  .conn-left::after{ left:-14%; top:26%; width:28%; height:48%; }
+  .conn-right::after{ right:-14%; top:26%; width:28%; height:48%; }
+  .badge {
+    position:absolute; z-index:4; left:6px; top:6px; background: rgba(0,0,0,0.45);
+    color:white; font-weight:700; padding:6px 8px; border-radius:6px; font-size: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+  }
+  .badge.end{ left:auto; right:6px; top:6px; background:linear-gradient(180deg,#e94b3c,#c83a2a); }
+  .marker {
+    position:absolute; width:50%; height:50%; left:25%; top:20%; z-index:5;
+    display:grid; place-items:center; font-size:1.8rem;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45)); transform: translateZ(1px);
+  }
+  .marker.star{ color:var(--accent-star); text-shadow: 0 6px 18px rgba(255,210,80,0.25), 0 2px 3px rgba(0,0,0,0.5); }
+  .marker.q{ color:var(--accent-q); text-shadow: 0 6px 14px rgba(0,0,0,0.4); }
+  .star-glow::before, .q-glow::before{
+    content:''; position:absolute; inset:6px; border-radius:6px; z-index:3; pointer-events:none;
+  }
+  .star-glow::before{ box-shadow: 0 0 20px 6px rgba(255,210,80,0.15), inset 0 0 6px rgba(255,210,80,0.08); }
+  .q-glow::before{ box-shadow: 0 0 20px 6px rgba(240,240,235,0.08), inset 0 0 6px rgba(240,240,235,0.04); }
+  /* ========== PAWN STYLES ========== */
+  #pawn {
+    position: absolute; z-index: 100;
+    transform: translate(-50%, -80%); pointer-events: none;
+    filter: drop-shadow(0 8px 8px rgba(0,0,0,0.4));
+    transition: top 0.3s ease-in-out, left 0.3s ease-in-out;
+  }
+  #pawn::before, #pawn::after {
+    content: ''; position: absolute; left: 50%;
+    transform: translateX(-50%); width: 100%;
+  }
+  #pawn::before {
+    top: 0; height: 50%;
+    background: radial-gradient(circle at 50% 30%, #8ab4f8, var(--pawn-light) 70%);
+    border-radius: 50%;
+  }
+  #pawn::after {
+    bottom: 0; height: 70%;
+    background: linear-gradient(to bottom, var(--pawn-light) -20%, var(--pawn-dark) 100%);
+    border-radius: 40% 40% 50% 50% / 40% 40% 60% 60%;
+    clip-path: polygon(0 25%, 100% 25%, 100% 100%, 0% 100%);
+  }
+  /* ========== DICE UI STYLES ========== */
+  .dice-ui-container {
+    position: fixed; bottom: 20px; right: 20px;
+    display:flex; gap:18px; align-items:center; flex-direction:column;
+    z-index: 200;
+  }
+  .stage{
+    width: calc(var(--dice-size) * 1.5); height: calc(var(--dice-size) * 1.5);
+    perspective: 1200px; display:grid; place-items:center;
+  }
+  .cube {
+    width: var(--dice-size); height: var(--dice-size); position: relative;
+    transform-style: preserve-3d;
+    transition: transform var(--dice-dur) cubic-bezier(.2,.9,.3,1);
+    will-change: transform;
+  }
+  .face{
+    position:absolute; inset:0; display:grid;
+    grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(3,1fr);
+    place-items:center; background: var(--dice-card); border-radius:10px;
+    box-shadow: 0 6px 15px rgba(2,6,23,0.5), inset 0 -6px 15px rgba(0,0,0,0.06);
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  }
+  .face.front  { transform: rotateY(   0deg ) translateZ(calc(var(--dice-size)/2)); }
+  .face.back   { transform: rotateY( 180deg ) translateZ(calc(var(--dice-size)/2)); }
+  .face.right  { transform: rotateY(  90deg ) translateZ(calc(var(--dice-size)/2)); }
+  .face.left   { transform: rotateY( -90deg ) translateZ(calc(var(--dice-size)/2)); }
+  .face.top    { transform: rotateX(  90deg ) translateZ(calc(var(--dice-size)/2)); }
+  .face.bottom { transform: rotateX( -90deg ) translateZ(calc(var(--dice-size)/2)); }
+  .pip{
+    width: calc(var(--dice-size) * 0.18); height: calc(var(--dice-size) * 0.18);
+    border-radius: 50%; background: var(--dice-pip);
+    box-shadow: 0 2px 4px rgba(2,6,23,0.6), inset 0 -2px 3px rgba(255,255,255,0.07);
+  }
+  .face .pos1{grid-area:1/1} .face .pos3{grid-area:1/3} .face .pos5{grid-area:2/2}
+  .face .pos7{grid-area:3/1} .face .pos9{grid-area:3/3}
+  #rollBtn {
+    background: #4a3c2a; border: 2px solid #2e2419; color:white;
+    padding:12px 24px; border-radius:10px; font-weight:600; font-size: 1rem;
+    box-shadow: 0 8px 20px rgba(2,6,23,0.45), inset 0 1px 1px rgba(255,255,255,0.1); cursor:pointer;
+    transition: all 0.2s;
+  }
+  #rollBtn:hover { background: #604e38; }
+  #rollBtn:disabled{ opacity:0.6; cursor:default; background: #555; border-color: #333;}
+  .dice-result-card{
+    background: rgba(0,0,0,0.4); color: white; padding:8px 12px;
+    border-radius:8px; font-size: 14px; text-align: center;
+    width: 120px;
+    backdrop-filter: blur(4px);
+  }
+  .legend {
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    right:10px;
+    display:flex;
+    justify-content:flex-start;
+    gap:10px;
+    font-size:12px;
+    color:#fff;
+    z-index:10;
+    pointer-events:none;
+  }
+  .legend .item{
+    display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.3);padding:6px 8px;border-radius:8px;
+    backdrop-filter: blur(4px);
+  }
+  .legend .dot{width:18px;height:18px;border-radius:4px;background:var(--accent-star);box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+  .legend .qdot{width:18px;height:18px;border-radius:4px;background:var(--accent-q);}
+  .legend .pathdot{width:18px;height:18px;border-radius:4px;background:var(--stone);}
+  /* Chatbot Styles */
+#open-chat-btn {
+    position: fixed;
+    bottom: 180px;
+    left: 18px;
+    background-color: #00e676;
+    color: #1e293b;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+    z-index: 999;
+}
+
+#chatbot-modal {
+    position: fixed;
+    bottom: 18px;
+    left: 18px;
+    width: 350px;
+    max-height: 500px;
+    background-color: #1e293b;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease;
+}
+
+#chatbot-modal:not(.hidden) {
+    transform: scale(1);
+}
+
+#chat-header {
+    background-color: #2c3e50;
+    color: #f8fafc;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+#close-chat-btn {
+    background: none;
+    border: none;
+    color: #f8fafc;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#chat-log {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    line-height: 1.4;
+}
+
+.message.user {
+    background-color: #3498db;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.message.bot {
+    background-color: #334155;
+    color: #f8fafc;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+#chat-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #2c3e50;
+}
+
+#chat-input {
+    flex-grow: 1;
+    border: none;
+    background-color: #334155;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+#send-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hidden {
+    transform: scale(0) !important;
+}
+</style>
+</head>
+<body>
+  <div class="title-container">
+    <h1>Adventure Quest</h1>
+  </div>
+  <div class="wrap">
+    <div class="board" id="board">
+      <div id="pawn"></div>
+    </div>
+  </div>
+  <div class="legend" aria-hidden="true">
+      <div class="item"><div class="pathdot"></div> Path tile</div>
+      <div class="item"><div class="dot"></div> Challenge (★)</div>
+      <div class="item"><div class="qdot"></div> Random event (?)</div>
+    </div>
+  <div class="dice-ui-container">
+    <div class="stage">
+      <div class="cube" id="cube">
+        <div class="face front"><div class="pos5"><div class="pip"></div></div></div>
+        <div class="face back"><div class="pos1"><div class="pip"></div></div><div class="pos3"><div class="pip"></div></div><div class="pos1" style="grid-area:2/1"><div class="pip"></div></div><div class="pos3" style="grid-area:2/3"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div><div class="pos9"><div class="pip"></div></div></div>
+        <div class="face right"><div class="pos3"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div></div>
+        <div class="face left"><div class="pos1"><div class="pip"></div></div><div class="pos3"><div class="pip"></div></div><div class="pos5"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div><div class="pos9"><div class="pip"></div></div></div>
+        <div class="face top"><div class="pos3"><div class="pip"></div></div><div class="pos5"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div></div>
+        <div class="face bottom"><div class="pos1"><div class="pip"></div></div><div class="pos3"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div><div class="pos9"><div class="pip"></div></div></div>
+      </div>
+    </div>
+    <div class="dice-result-card" id="resultCard">Click to Roll!</div>
+    <button id="rollBtn">Roll 🎲</button>
+  </div>
+  <button id="open-chat-btn">🤖 Game Help</button>
+
+<div id="chatbot-modal" class="hidden">
+    <div id="chat-window">
+        <div id="chat-header">
+            <h3>Game Master AI</h3>
+            <button id="close-chat-btn">&times;</button>
+        </div>
+        <div id="chat-log">
+            <div class="message bot">Hello! I'm the Game Master. Ask me anything about the adventure board or the mini-games!</div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Ask a question..." />
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+</div>
+<script>
+// ===================================
+//  SCRIPT 1: BOARD GENERATION LOGIC
+// ===================================
+const board = document.getElementById('board');
+const gridIndex = (r,c) => r*5 + c;
+const pathOrder = [];
+for(let r=0;r<5;r++){
+  if(r%2===0){ for(let c=0;c<5;c++) pathOrder.push([r,c]); }
+  else { for(let c=4;c>=0;c--) pathOrder.push([r,c]); }
+}
+const starIndices = [2,4,7,10,11,13,15,18,22,24];
+const qIndices = [5,9,14,17,20,23];
+const cells = [];
+for(let i=0;i<25;i++){
+  const div = document.createElement('div');
+  div.className = 'cell fill'; div.dataset.index = i;
+  board.appendChild(div); cells.push(div);
+}
+for(let i=0;i<pathOrder.length;i++){
+  const [r,c] = pathOrder[i]; const idx = gridIndex(r,c); const el = cells[idx];
+  el.classList.remove('fill'); el.classList.add('path');
+  if(i===0){ const b=document.createElement('div'); b.className='badge start'; b.textContent='START'; el.appendChild(b); }
+  else if(i===pathOrder.length-1){ const b=document.createElement('div'); b.className='badge end'; b.textContent='END'; el.appendChild(b); }
+  if(starIndices.includes(i+1)){ el.classList.add('star-glow'); const m=document.createElement('div'); m.className='marker star'; m.textContent='★'; el.appendChild(m); }
+  if(qIndices.includes(i+1)){ el.classList.add('q-glow'); const m=document.createElement('div'); m.className='marker q'; m.textContent='?'; el.appendChild(m); }
+  const prev = (i>0)? pathOrder[i-1] : null; const next = (i<pathOrder.length-1)? pathOrder[i+1] : null;
+  const r0=r, c0=c;
+  function isUp(a){ return a && a[0]===r0-1 && a[1]===c0; } function isDown(a){ return a && a[0]===r0+1 && a[1]===c0; }
+  function isLeft(a){ return a && a[0]===r0 && a[1]===c0-1; } function isRight(a){ return a && a[0]===r0 && a[1]===c0+1; }
+  if(isUp(prev) || isUp(next)) el.classList.add('conn-up'); if(isDown(prev) || isDown(next)) el.classList.add('conn-down');
+  if(isLeft(prev) || isLeft(next)) el.classList.add('conn-left'); if(isRight(prev) || isRight(next)) el.classList.add('conn-right');
+  const dbg = document.createElement('div'); dbg.style.cssText='position:absolute; right:6px; bottom:6px; font-size:11px; color:rgba(255,255,255,0.9)';
+  dbg.textContent = i+1; el.appendChild(dbg);
+}
+</script>
+<script>
+// ===================================
+//  SCRIPT 2: GAME INTERACTION LOGIC
+// ===================================
+const pawn = document.getElementById('pawn');
+const cube = document.getElementById('cube');
+const rollBtn = document.getElementById('rollBtn');
+const resultCard = document.getElementById('resultCard');
+
+// Game State
+let currentPawnIndex = 0;
+let isInteracting = false;
+
+// --- Pawn Functions ---
+function placePawnAt(pathIndex) {
+  const [row, col] = pathOrder[pathIndex];
+  const cellWidth = board.clientWidth / 5;
+  const cellHeight = board.clientHeight / 5;
+  pawn.style.width = `${cellWidth * 0.45}px`;
+  pawn.style.height = `${cellHeight * 0.65}px`;
+  const pawnX = col * cellWidth + (cellWidth / 2);
+  const pawnY = row * cellHeight + (cellHeight / 2);
+  pawn.style.left = `${pawnX}px`;
+  pawn.style.top = `${pawnY}px`;
+}
+function handleEvent(tileNumber) {
+    const challengeMap = {
+        2: { name: 'Code Unlock', file: 'codeunlock.html' },
+        4: { name: 'Wordle', file: 'wordle.html' },
+        7: { name: 'Logic Detective', file: 'logicdetective.html' },
+        9: { name: 'Sudoku Timer Puzzle', file: 'sudoku.html' },
+        10: { name: 'Hangman', file: 'hangman.html' },
+        11: { name: 'Tech Riddle', file: 'techriddle.html' },
+        13: { name: 'Crack the Logic', file: 'crackthelogic.html' },
+        14: { name: 'Word Finder', file: 'wordfinder2.html' },
+        15: { name: 'Sudoku', file: 'sudokuu.html' },
+        18: { name: 'Guess the Number', file: 'guessthenumber.html' },
+        22: { name: 'Memory Hacker', file: 'memoryhacker.html' },
+        23: { name: 'Hangman Puzzle', file: 'hangman2.html' },
+        24: { name: 'Word Finder', file: 'wordfinder.html' }
+    };
+    if (challengeMap[tileNumber]) {
+        const challenge = challengeMap[tileNumber];
+        sessionStorage.setItem('boardGamePawnIndex', currentPawnIndex);
+        alert(`You've landed on the ${challenge.name} challenge! ★`);
+        window.location.href = challenge.file;
+    } else if (starIndices.includes(tileNumber)) {
+        alert(`Landed on challenge tile ${tileNumber}. No game here yet!`);
+        rollBtn.disabled = false;
+        isInteracting = false;
+    } else if (qIndices.includes(tileNumber)) {
+        switch (tileNumber) {
+            case 5:
+                setTimeout(() => {
+                    alert("You found a shortcut! Move 3 steps ahead.");
+                    movePawn(3);
+                }, 200);
+                break;
+            case 17:
+                setTimeout(() => {
+                    alert("You fell into a trap! Move 3 steps backward.");
+                    movePawn(-3);
+                }, 200);
+                break;
+            case 20:
+                setTimeout(() => {
+                    alert("A vortex sends you back to the start!");
+                    const stepsBack = -currentPawnIndex;
+                    movePawn(stepsBack);
+                }, 200);
+                break;
+            default:
+                rollBtn.disabled = false;
+                isInteracting = false;
+        }
+    } else {
+        rollBtn.disabled = false;
+        isInteracting = false;
+    }
+}
+function movePawn(steps) {
+  isInteracting = true;
+  const totalTiles = pathOrder.length;
+  const targetIndex = Math.min(totalTiles - 1, Math.max(0, currentPawnIndex + steps));
+  if (targetIndex === currentPawnIndex) {
+    isInteracting = false;
+    rollBtn.disabled = false;
+    return;
+  }
+  const direction = targetIndex > currentPawnIndex ? 1 : -1;
+  const interval = setInterval(() => {
+    if (currentPawnIndex !== targetIndex) {
+      currentPawnIndex += direction;
+      placePawnAt(currentPawnIndex);
+    } else {
+      clearInterval(interval);
+      const currentTileNumber = currentPawnIndex + 1;
+
+      if (currentPawnIndex === totalTiles - 1) {
+        setTimeout(() => {
+          alert("Congratulations! You reached the end! 🎉");
+          rollBtn.disabled = true;
+        }, 100);
+      } else {
+        setTimeout(() => handleEvent(currentTileNumber), 100);
+      }
+    }
+  }, 400);
+}
+
+// --- Dice Functions ---
+const faceRotations = {
+  1: { x: 0, y: 0 }, 6: { x: 0, y: 180 }, 2: { x: 0, y: -90 },
+  5: { x: 0, y: 90 }, 3: { x: -90, y: 0 }, 4: { x: 90, y: 0 }
+};
+
+function rollDice() {
+  if (isInteracting) return;
+  isInteracting = true;
+  rollBtn.disabled = true;
+  resultCard.textContent = 'Rolling...';
+  const result = Math.floor(Math.random() * 6) + 1;
+  const spinsX = Math.floor(Math.random() * 2) + 1;
+  const spinsY = Math.floor(Math.random() * 2) + 1;
+  const base = faceRotations[result];
+  const finalX = base.x + spinsX * 360;
+  const finalY = base.y + spinsY * 360;
+
+  cube.style.transform = `rotateX(${finalX}deg) rotateY(${finalY}deg)`;
+
+  cube.addEventListener('transitionend', () => {
+    resultCard.innerHTML = `You rolled a <strong>${result}</strong>!`;
+    movePawn(result);
+  }, { once: true });
+}
+
+// --- INITIALIZATION ---
+window.addEventListener('load', () => {
+    const savedIndex = sessionStorage.getItem('boardGamePawnIndex');
+    if (savedIndex !== null) {
+        currentPawnIndex = parseInt(savedIndex, 10);
+        sessionStorage.removeItem('boardGamePawnIndex');
+    }
+    setTimeout(() => {
+        placePawnAt(currentPawnIndex);
+    }, 100);
+    rollBtn.addEventListener('click', rollDice);
+});
+// Frontend Chatbot Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const openChatBtn = document.getElementById('open-chat-btn');
+    const closeChatBtn = document.getElementById('close-chat-btn');
+    const chatbotModal = document.getElementById('chatbot-modal');
+    const sendBtn = document.getElementById('send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatLog = document.getElementById('chat-log');
+
+    openChatBtn.addEventListener('click', () => {
+        chatbotModal.classList.toggle('hidden');
+    });
+
+    closeChatBtn.addEventListener('click', () => {
+        chatbotModal.classList.add('hidden');
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender);
+        messageDiv.textContent = text;
+        chatLog.appendChild(messageDiv);
+        chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    async function sendMessage() {
+        const question = chatInput.value.trim();
+        if (!question) return;
+
+        addMessage(question, 'user');
+        chatInput.value = '';
+
+        try {
+            // This URL should point to your backend server
+            const response = await fetch('http://localhost:3000/ask-chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question: question }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+
+            const data = await response.json();
+            addMessage(data.answer, 'bot');
+
+        } catch (error) {
+            console.error('Error fetching chatbot response:', error);
+            addMessage('Sorry, I am having trouble connecting. Please try again later.', 'bot');
+        }
+    }
+});
+</script>
+</body>
+</html>

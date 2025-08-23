@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the 4-Digit Number - Aditya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: #87ceeb;
+            color: white;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .game-container {
+            background: #2c2f4a;
+            margin: 40px auto;
+            padding: 25px;
+            width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px #000;
+            position: relative;
+        }
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .help-button {
+            position: absolute;
+            right: 0;
+            background: none;
+            border: 2px solid #ffdd57;
+            color: #ffdd57;
+            font-size: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            line-height: 1;
+        }
+        .status {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .display-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 10px;
+        }
+        .digit-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .digit-box {
+            background: #ff6347;
+            border-radius: 8px;
+            padding: 12px;
+            width: 50px;
+            font-size: 16px;
+        }
+        .feedback-text {
+            font-size: 10px;
+            color: #ffdd57;
+            margin-top: 6px;
+            min-height: 12px;
+        }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .keypad button {
+            padding: 15px;
+            font-size: 16px;
+            background: #ffca3a;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .keypad button:active {
+            transform: scale(0.9);
+        }
+        .end-game-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #00bfff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .modal-content {
+            background-color: #2c2f4a;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            text-align: left;
+            color: white;
+            box-shadow: 0 0 15px #000;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .modal-content h3 {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            color: #ffdd57;
+            margin-top: 0;
+        }
+        .modal-content p, .modal-content ul {
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="game-container" id="gameContainer">
+    <h2>Welcome!</h2>
+    <div class="title-wrapper">
+        <h3>🎯 Guess the Number</h3>
+        <button class="help-button" id="helpButton">?</button>
+    </div>
+    <div class="status">⏱ Time Left: <span id="timer">2:00</span></div>
+    <div class="status">Attempts Left: <span id="attempts">4</span></div>
+    <div class="status">Round: <span id="round">1</span> / 3</div>
+    <div class="display-wrapper" id="display"></div>
+    <div class="keypad">
+        <button onclick="press(1)">1</button>
+        <button onclick="press(2)">2</button>
+        <button onclick="press(3)">3</button>
+        <button onclick="press(4)">4</button>
+        <button onclick="press(5)">5</button>
+        <button onclick="press(6)">6</button>
+        <button onclick="press(7)">7</button>
+        <button onclick="press(8)">8</button>
+        <button onclick="press(9)">9</button>
+        <button onclick="press(0)">0</button>
+        <button onclick="deleteDigit()">⌫</button>
+        <button onclick="submitGuess()">⏎</button>
+    </div>
+</div>
+<div id="helpModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h3>How to Play</h3>
+        <p>Your goal is to guess a randomly generated 4-digit number within a set number of attempts and a time limit.</p>
+        <p><strong>Feedback Guide:</strong></p>
+        <ul>
+            <li><strong>✓</strong>: The digit is correct.</li>
+            <li><strong>Too high / High</strong>: Your digit is too large.</li>
+            <li><strong>Too low / Low</strong>: Your digit is too small.</li>
+        </ul>
+        <p>The game has 3 rounds. The time limit and attempts will change as you progress. Good luck!</p>
+    </div>
+</div>
+<script>
+    let secret = [];
+    let input = [];
+    let attemptsLeft;
+    let maxAttempts = 4;
+    let round = 1;
+    let maxRounds = 3;
+    let timeLeft;
+    let timer;
+    const helpModal = document.getElementById("helpModal");
+    const helpButton = document.getElementById("helpButton");
+    const closeButton = document.querySelector(".close-button");
+    helpButton.addEventListener('click', () => {
+        helpModal.classList.remove('hidden');
+    });
+    closeButton.addEventListener('click', () => {
+        helpModal.classList.add('hidden');
+    });
+    window.addEventListener('click', (event) => {
+        if (event.target === helpModal) {
+            helpModal.classList.add('hidden');
+        }
+    });
+    function getTimeForRound(round) {
+        return round === 1 ? 120 : round === 2 ? 60 : 30;
+    }
+    function generateSecret() {
+        secret = Array.from({ length: 4 }, () => Math.floor(Math.random() * 10));
+    }
+    function updateDisplay(numbers = [], feedbacks = []) {
+        const display = document.getElementById("display");
+        display.innerHTML = "";
+        for (let i = 0; i < 4; i++) {
+            const col = document.createElement("div");
+            col.className = "digit-column";
+
+            const box = document.createElement("div");
+            box.className = "digit-box";
+            box.textContent = numbers[i] !== undefined ? numbers[i] : "-";
+            const feedback = document.createElement("div");
+            feedback.className = "feedback-text";
+            feedback.textContent = feedbacks[i] || "";
+            col.appendChild(box);
+            col.appendChild(feedback);
+            display.appendChild(col);
+        }
+    }
+    function press(num) {
+        if (input.length < 4) {
+            input.push(num);
+            updateDisplay(input, ["", "", "", ""]);
+        }
+    }
+    function deleteDigit() {
+        input.pop();
+        updateDisplay(input, ["", "", "", ""]);
+    }
+    function getFeedback(diff) {
+        if (diff === 0) return "✓";
+        if (diff >= 3) return "Too high";
+        if (diff >= 1) return "High";
+        if (diff <= -3) return "Too low";
+        return "Low";
+    }
+    function submitGuess() {
+        if (input.length !== 4) return alert("Enter 4 digits first!");
+        let feedbacks = [];
+        let correct = true;
+        for (let i = 0; i < 4; i++) {
+            const diff = input[i] - secret[i];
+            const fb = getFeedback(diff);
+            if (fb !== "✓") correct = false;
+            feedbacks.push(fb);
+        }
+        updateDisplay(input, feedbacks);
+        attemptsLeft--;
+        document.getElementById("attempts").innerText = attemptsLeft;
+        if (correct) {
+            clearInterval(timer);
+            if (round < maxRounds) {
+                alert(`✅ Correct! Get ready for Round ${round + 1}`);
+                round++;
+                startRound();
+            } else {
+                alert("🎉 You won all 3 rounds!");
+                endGame(true);
+            }
+            return;
+        }
+        if (attemptsLeft === 0) {
+            clearInterval(timer);
+            updateDisplay(secret, ["💥", "💥", "💥", "💥"]);
+            alert("😢 You lost! Number was: " + secret.join(""));
+            endGame(false);
+        }
+        input = [];
+    }
+    function updateTimerDisplay() {
+        const min = Math.floor(timeLeft / 60);
+        const sec = timeLeft % 60;
+        document.getElementById("timer").innerText = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+    function updateTimer() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+        } else {
+            clearInterval(timer);
+            alert("⏱ Time's up! Number was: " + secret.join(""));
+            endGame(false);
+        }
+    }
+    function endGame(isVictory) {
+        document.querySelectorAll(".keypad button").forEach(btn => btn.disabled = true);        
+        const endButton = document.createElement('button');
+        endButton.className = 'end-game-btn';
+        if (isVictory) {
+            endButton.textContent = 'Return to Board';
+            endButton.onclick = () => { window.location.href = 'board.html'; };
+        } else {
+            endButton.textContent = 'Exit Game';
+            endButton.onclick = () => { window.close(); };
+        }
+        document.getElementById('gameContainer').appendChild(endButton);
+    }
+    function startRound() {
+        input = [];
+        generateSecret();
+        attemptsLeft = maxAttempts;
+        timeLeft = getTimeForRound(round);
+        document.getElementById("attempts").innerText = attemptsLeft;
+        document.getElementById("round").innerText = round;
+        updateDisplay(["", "", "", ""], ["", "", "", ""]);
+        clearInterval(timer);
+        updateTimerDisplay();
+        timer = setInterval(updateTimer, 1000);
+        document.querySelectorAll(".keypad button").forEach(btn => btn.disabled = false);
+    }
+    startRound();
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Code Unlock Game</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0e0e0e;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .header {
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #00d26a;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+    .input-area {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .digit-box {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+      text-align: center;
+      border: 2px solid #00d26a;
+      border-radius: 10px;
+      background: #161b22;
+      color: white;
+    }
+    button {
+      padding: 12px 24px;
+      background-color: #00d26a;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #03b85b;
+    }
+    .feedback {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: left;
+    }
+    .attempt {
+      background: #1c1c1c;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      font-size: 1.1rem;
+    }
+    .win {
+      color: #00ff90;
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+    .lose {
+      color: #ff4d4d;
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+    #help-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: none;
+      border: 2px solid #555;
+      color: #aaa;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      padding: 0;
+    }
+    .modal {
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      position: relative;
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔐 Code Unlock</h1>
+    <button id="help-button">?</button>
+  </div>
+  <div class="subtitle">Guess the 4-digit code. 8 tries max. No repeated digits!</div>
+  <div class="input-area">
+    <input type="text" maxlength="1" class="digit-box" id="d1">
+    <input type="text" maxlength="1" class="digit-box" id="d2">
+    <input type="text" maxlength="1" class="digit-box" id="d3">
+    <input type="text" maxlength="1" class="digit-box" id="d4">
+  </div>
+  <button id="unlock-button" onclick="checkCode()">Unlock Code</button>
+  <div id="feedback" class="feedback"></div>
+  <div id="statusMsg"></div>
+  <div id="post-game-area"></div>
+  <div id="help-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>How to Play</h2>
+      <p>Your goal is to guess the secret 4-digit code.</p>
+      <ul>
+        <li>The code consists of 4 unique digits (0-9).</li>
+        <li>You have a maximum of 8 attempts to guess the code.</li>
+        <li>After each guess, you will receive feedback to help you deduce the correct code.</li>
+      </ul>
+      <h4>Feedback Guide:</h4>
+      <p><strong>✅ Correct Digit & Place:</strong> This tells you how many digits in your guess are correct and in the right position.</p>
+      <p><strong>🔄 Correct Digit, Wrong Place:</strong> This tells you how many digits are part of the secret code but are currently in the wrong position.</p>
+      <p>Use the feedback from each attempt to narrow down the possibilities and crack the code before you run out of tries. Good luck!</p>
+    </div>
+  </div>
+  <script>
+    const secretCode = generateCode();
+    let attempts = 0;
+    const maxAttempts = 8;
+    // --- Modal Elements & Listeners ---
+    const helpModal = document.getElementById('help-modal');
+    const helpButton = document.getElementById('help-button');
+    const closeButton = document.querySelector('.close-button');
+
+    helpButton.onclick = () => helpModal.classList.remove('hidden');
+    closeButton.onclick = () => helpModal.classList.add('hidden');
+    window.onclick = (event) => {
+      if (event.target == helpModal) {
+        helpModal.classList.add('hidden');
+      }
+    };
+    function generateCode() {
+      let digits = [];
+      while (digits.length < 4) {
+        let d = Math.floor(Math.random() * 10).toString();
+        if (!digits.includes(d)) digits.push(d);
+      }
+      return digits.join('');
+    }
+    function checkCode() {
+      const inputs = [d1.value, d2.value, d3.value, d4.value];
+      const guess = inputs.join('');
+
+      if (!/^\d{4}$/.test(guess)) {
+        alert("Enter all 4 digits (0–9).");
+        return;
+      }
+      if (new Set(guess).size !== 4) {
+        alert("All digits must be unique.");
+        return;
+      }
+      attempts++;
+      let correctPosition = 0;
+      let correctDigit = 0;
+
+      for (let i = 0; i < 4; i++) {
+        if (guess[i] === secretCode[i]) {
+          correctPosition++;
+        } else if (secretCode.includes(guess[i])) {
+          correctDigit++;
+        }
+      }
+      const feedback = document.getElementById("feedback");
+      const attemptDiv = document.createElement("div");
+      attemptDiv.className = "attempt";
+      attemptDiv.innerHTML = `
+        <strong>Guess ${attempts}: ${guess}</strong>
+        ✅ ${correctPosition} digit(s) correct & in correct place<br>
+        🔄 ${correctDigit} digit(s) correct but wrong place
+      `;
+      feedback.appendChild(attemptDiv);
+      if (guess === secretCode) {
+        document.getElementById("statusMsg").innerHTML = `<div class="win">🎉 You unlocked the code! It was <b>${secretCode}</b></div>`;
+        endGame(true); // Player won
+      } else if (attempts >= maxAttempts) {
+        document.getElementById("statusMsg").innerHTML = `<div class="lose">💥 Game Over! The code was <b>${secretCode}</b></div>`;
+        endGame(false); // Player lost
+      }
+      clearInputs();
+    }
+    function endGame(isWin) {
+      document.querySelectorAll(".digit-box").forEach(input => input.disabled = true);
+      document.getElementById("unlock-button").style.display = 'none';
+      const postGameArea = document.getElementById('post-game-area');
+      const newButton = document.createElement('button');
+      if (isWin) {
+        newButton.textContent = 'Return to Board';
+        newButton.onclick = () => { window.location.href = 'board.html'; }; // Link to your main board
+      } else {
+        newButton.textContent = 'Exit';
+        newButton.onclick = () => { window.close(); }; // Exits the tab
+      }
+      postGameArea.appendChild(newButton);
+    }
+    function clearInputs() {
+      document.querySelectorAll(".digit-box").forEach(input => input.value = '');
+      d1.focus();
+    }
+    document.querySelectorAll(".digit-box").forEach((input, index, inputs) => {
+      input.addEventListener("input", () => {
+        if (input.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Quest Dice Adventure - Loading</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .loader-container {
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #00f0ff;
+  }
+  .dice {
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    margin: 0 auto;
+    animation: rollDice 1.2s infinite ease-in-out;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .dot.center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .dot.tl { top: 15%; left: 15%; }
+  .dot.tr { top: 15%; right: 15%; }
+  .dot.bl { bottom: 15%; left: 15%; }
+  .dot.br { bottom: 15%; right: 15%; }
+  @keyframes rollDice {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(90deg); }
+    50%  { transform: rotate(180deg); }
+    75%  { transform: rotate(270deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .loading-text {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    animation: blink 1.2s infinite;
+  }
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.5; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="loader-container">
+  <h1>⚔️ Code Quest: Dice Adventure</h1>
+  <div class="dice">
+    <div class="dot center"></div>
+    <div class="dot tl"></div>
+    <div class="dot tr"></div>
+    <div class="dot bl"></div>
+    <div class="dot br"></div>
+  </div>
+  <div class="loading-text">Loading your adventure...</div>
+</div>
+<script>
+  setTimeout(() => {
+    window.location.href = "board.html"; 
+  }, 3000);
+</script>
+</body>
+</html>

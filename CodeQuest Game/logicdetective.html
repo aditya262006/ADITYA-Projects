@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Logic Detective</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            position: relative;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            color: #00ffcc;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        #help-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: 2px solid #555;
+            color: #ccc;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .puzzle-container {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,255,204,0.3);
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-top: 10px;
+        }
+        .options button {
+            display: block;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .options button:hover {
+            background-color: #444;
+        }
+        .hint, .lives, .end-game-btn-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .hint button {
+            background-color: #007acc;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .end-game-btn-container button {
+            background-color: #00ffcc;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .lives {
+            color: #f66;
+        }
+        .game-over {
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .end-game-btn-container button {
+            margin-top: 15px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #1e1e1e;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #00ffcc;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .close-button:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🕵️ Logic Detective</h1>
+        <button id="help-button">?</button>
+    </div>
+    <div id="game"></div>
+    <div class="lives" id="lives">Lives: 4</div>
+    <div class="game-over" id="gameOver" style="display:none;"></div>
+
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>How to Play</h2>
+            <p>Your goal is to solve a series of logic puzzles. You have 4 lives and must complete all the puzzles to win.</p>
+            <ul>
+                <li>Read the puzzle question and any accompanying image or passage carefully.</li>
+                <li>Select the option you believe is the correct answer.</li>
+                <li>Each incorrect answer costs you one life.</li>
+                <li>If you run out of lives, the game is over.</li>
+                <li>Hints are available for each puzzle if you need a little help.</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let lives = 4;
+        let currentPuzzleIndex = 0;
+        let combinedPuzzles = [];        
+        async function loadPuzzles() {
+            try {
+                const [imageData, passageData] = await Promise.all([
+                    fetch('image_puzzles.json').then(res => res.json()),
+                    fetch('passage_puzzles.json').then(res => res.json())
+                ]);
+                const imagePuzzles = shuffle(imageData).slice(0, 4);
+                const passagePuzzles = shuffle(passageData).slice(0, 4);
+                for (let i = 0; i < 4; i++) {
+                    combinedPuzzles.push(imagePuzzles[i]);
+                    combinedPuzzles.push(passagePuzzles[i]);
+                }
+                showNextPuzzle();
+            } catch (err) {
+                console.error("Error loading puzzles:", err);
+                document.getElementById("game").innerHTML = 
+                    "<p style='color:red;'>Failed to load puzzles. Please ensure you are running from a web server and the JSON files are in the same directory.</p>";
+            }
+        }        
+        function shuffle(array) {
+            return [...array].sort(() => Math.random() - 0.5);
+        }        
+        function showNextPuzzle() {
+            if (lives <= 0) {
+                return endGame("💀 Game Over! You ran out of lives.", false);
+            }
+            if (currentPuzzleIndex >= combinedPuzzles.length) {
+                return endGame("🎉 Congratulations! You completed all puzzles!", true);
+            }
+            const puzzle = combinedPuzzles[currentPuzzleIndex];
+            const container = document.getElementById("game");
+            container.innerHTML = '';
+            const puzzleBox = document.createElement('div');
+            puzzleBox.className = 'puzzle-container';
+            if (puzzle.image) {
+                puzzleBox.innerHTML += `<img src="${puzzle.image}" alt="Puzzle Image">`;
+                puzzleBox.innerHTML += `<p>${puzzle.description}</p>`;
+            } else {
+                puzzleBox.innerHTML += `<p><strong>Puzzle:</strong> ${puzzle.question}</p>`;
+            }
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'options';        
+            puzzle.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    const isCorrect = (typeof puzzle.answer === 'string') 
+                        ? opt === puzzle.answer 
+                        : i === puzzle.answer;
+        
+                    if (isCorrect) {
+                        currentPuzzleIndex++;
+                        showNextPuzzle();
+                    } else {
+                        lives--;
+                        document.getElementById("lives").innerText = `Lives: ${lives}`;
+                        alert("❌ Incorrect! -1 life");
+                        if (lives <= 0) {
+                            showNextPuzzle();
+                        }
+                    }
+                };
+                optionsDiv.appendChild(btn);
+            });
+            const hintDiv = document.createElement('div');
+            hintDiv.className = 'hint';
+            const hintBtn = document.createElement('button');
+            hintBtn.textContent = "💡 Hint";
+            hintBtn.onclick = () => alert(puzzle.hint);
+            hintDiv.appendChild(hintBtn);
+            puzzleBox.appendChild(optionsDiv);
+            puzzleBox.appendChild(hintDiv);
+            container.appendChild(puzzleBox);
+        }        
+        function endGame(message, isWin) {
+            document.getElementById("game").innerHTML = '';
+            const gameOverDiv = document.getElementById("gameOver");
+            gameOverDiv.innerText = message;
+            gameOverDiv.style.display = 'block';
+            const returnButton = document.createElement('button');
+            if (isWin) {
+                returnButton.textContent = 'Return to Board';
+                returnButton.onclick = () => { window.location.href = 'board.html'; }; 
+            } else {
+                returnButton.textContent = 'Exit Game';
+                returnButton.onclick = () => { window.location.close(); };
+            }
+            const btnContainer = document.createElement('div');
+            btnContainer.className = 'end-game-btn-container';
+            btnContainer.appendChild(returnButton);
+            gameOverDiv.appendChild(btnContainer);
+        }     
+        // Modal Logic
+        const helpModal = document.getElementById("help-modal");
+        const helpButton = document.getElementById("help-button");
+        const closeButton = document.querySelector(".close-button");
+        helpButton.onclick = () => {
+            helpModal.style.display = "flex";
+        };
+        closeButton.onclick = () => {
+            helpModal.style.display = "none";
+        };
+        window.onclick = (event) => {
+            if (event.target == helpModal) {
+                helpModal.style.display = "none";
+            }
+        };
+        loadPuzzles();
+    </script>
+</body>
+</html>
