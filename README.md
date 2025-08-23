@@ -18,7 +18,7 @@ This space showcases my **personal and academic projects** built while learning 
 
 ---
 
-### 📰 News App (Tkinter + Mediastack API)  
+### 📰 News Application 
 - A desktop application that fetches and displays real-time news headlines.  
 - Developed using **Python's Tkinter** GUI and **Mediastack API**.  
 - Features: Search bar, filters, categories, responsive scrollable interface.  
@@ -29,7 +29,7 @@ This space showcases my **personal and academic projects** built while learning 
 
 ---
 
-### 💰 Banking System (Console + GUI)  
+### 💰 Banking System   
 - Console and GUI-based banking system using **advanced OOP concepts in Python**.  
 - GUI version supports login, deposits, withdrawals, transfers, and transaction history.  
 - Demonstrates inheritance, polymorphism, encapsulation, and file handling.  
@@ -40,8 +40,8 @@ This space showcases my **personal and academic projects** built while learning 
 
 ---
 
-### 🎲 CodeQuest: Dice Adventure (Final Game) ⭐  
-- A **techy multi-game adventure app** built with the **MERN Stack** (MongoDB, Express, React, Node.js) + HTML/CSS.  
+### 🎲 CodeQuest: Dice Adventure (FullStack Game) ⭐  
+- A **techy multi-game adventure app** built with the **MERN Stack** (MongoDB, Express, React.js, Node.js) + HTML/CSS.  
 - Combines **logic puzzles, coding challenges, and mini-games** into one journey.  
 
 #### 🔟 Games Included:  
@@ -56,19 +56,17 @@ This space showcases my **personal and academic projects** built while learning 
 9. **Hangman** (with difficulty modes & hints)  
 10. **Sudoku** (modern UI + win animations)  
 
-#### 🎯 Final Concept:  
-- After completing the 8 main games, players unlock **CodeQuest: Dice Adventure**.  
+## 🎯 Concept:  
+- **CodeQuest: Dice Adventure** is a board game built with modern techy games 
 - Each player **rolls a dice** to move across a **25-tile board map**.  
 - Each tile may contain:  
   - 🧩 A logic puzzle  
   - 💻 A coding challenge  
   - 🐞 A “bug” to fix  
   - 🎁 A surprise reward  
-- Players compete for a **cash prize** by finishing the game in the shortest time with required stats.  
-- Includes **prize system, retry limits, and sequential unlocking for normal players**.  
 
 📸 *Preview:*  
-![CodeQuest Dice Adventure Screenshot](images/codequest.png)  
+![CodeQuest Dice Adventure Screenshot](https://drive.google.com/file/d/1m1L1FYjSJELh9iJNm1YMbyUQQ8M9ouqj/view?usp=sharing)  
 
 ---
 
@@ -97,16 +95,6 @@ This space showcases my **personal and academic projects** built while learning 
 
 📸 *Preview:*  
 ![Blinkit Clone Screenshot](images/blinkit.png)  
-
----
-
-### 🌀 App Cloner (UI Clones of Famous Apps)  
-- Frontend clones of popular apps including **Spotify, Zomato, Facebook, Instagram, Amazon, YouTube**.  
-- Created using **HTML, CSS, JavaScript**.  
-- Focused on **layout design, responsiveness, and matching the original look & feel**.  
-
-📸 *Preview:*  
-![App Cloner Screenshot](images/app_cloner.png)  
 
 ---
 
