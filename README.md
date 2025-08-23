@@ -7,100 +7,134 @@ This space showcases my **personal and academic projects** built while learning 
 
 ## 🗂️ Projects Included
 
-### 🎬 Movie Recommender Web App
-- A Flask-based app that recommends movies based on user input using content-based filtering.
-- Built with **Python**, **Flask**, and **HTML/CSS**.
-- Features: Genre detection, similarity matching, poster previews.
+### 🎬 Movie Recommender Web App  
+- A Flask-based app that recommends movies based on user input using **content-based filtering**.  
+- Built with **Python**, **Flask**, and **HTML/CSS**.  
+- Features: Genre detection, similarity matching, poster previews.  
+- Includes **frontend previews with movie posters** for better user experience.  
 
-### 📰 News App (Tkinter + Mediastack API)
-- A desktop application that fetches and displays real-time news headlines.
-- Developed using **Python's Tkinter** GUI and **Mediastack API**.
-- Features: Search bar, filters, categories, responsive scrollable interface.
-
-### 💰 Banking System (Console + GUI)
-- Console and GUI-based banking system using **advanced OOP concepts in Python**.
-- GUI version supports login, deposits, withdrawals, transfers, and transaction history.
-- Demonstrates inheritance, polymorphism, encapsulation, and file handling.
-
-### 🕹️ Game Manager App (MERN Stack) ⭐
-- A multi-game launcher with 8 games including logic puzzles, mind games, and tech quizzes.
-- Built using **MongoDB**, **Express**, **React**, and **Node.js** with HTML/CSS for styling.
-- Features: Sequential unlocking, ID-based access for special users, retry limits, and prize system.
-- Techy & Engaging Game Simulation with Games and prizes.
-- 10 Techy Games like Guess the number,Code unlock,Wordle,Word Finder,Logic Detective,Crack the Logic,Tech Riddle,Memory Hacker,Hangman,Sudoku.
-- Final Game Code Quest:Dice Adventure unlocks after completing 8 games 
-- Each player rolls a dice to move on a board (grid).
-- Each block has:A coding challenge ,A logic puzzle ,A "bug" to fix Or a surprise item to solve in given time.
-- Players earn “Cash prize” by finishing the game with least time and required stats.
-
-### 🌟 SmartBox - All-in-One Utility Manager App  
-
-*SmartBox* is a multi-utility app that brings all your essential tools into one place. It is designed with a clean UI, responsive design, and smooth navigation so you can switch easily between utilities.  
-### ✨ Features (Modules)  
-
-### 1️⃣ Scientific Calculator  
-- Fully functional calculator with advanced math features (arithmetic, square root, power, trigonometry, backspace).  
-- Built using *Python & Tkinter (GUI)*.  
-
-### 2️⃣ Stopwatch Web App  
-- Lightweight, responsive stopwatch built with *HTML, CSS & JavaScript*.  
-- Features start/stop, lap functionality, and reset.  
-
-### 3️⃣ Digital Clock  
-- Displays accurate system time in a modern UI.  
-- Built with *HTML, CSS & JavaScript*.  
-
-### 4️⃣ Weather App  
-- Fetches real-time weather data (temperature, humidity, wind speed, etc.) using *OpenWeather API*.  
-- Search weather by city or country with optional *Map integration*.  
-
-### 5️⃣ Currency Converter  
-- Converts currencies between nearly all countries using *ExchangeRate API*.  
-- Supports multi-currency and live exchange rate updates.  
-
-### 6️⃣ Unit Converter
-- Convert length, weight, volume, and more with a simple dropdown UI.  
-  
-## 🛠 Tech Stack  
-- *Frontend:* React (or pure HTML/CSS/JS for small tools) + TailwindCSS/Material UI  
-- *Backend:* Node.js (Express) for API integration (or direct API calls for lightweight modules)  
-- *Database:* MongoDB (optional) for saving user preferences  
-
-### 🌀 App Cloner (UI Clones of Famous Apps)
-- Frontend clones of popular apps including **Spotify**, **Zomato**, **Facebook**, **Instagram**, **Amazon**, and **YouTube**.
-- Created using **HTML**, **CSS**, and **JavaScript**.
-- Focused on layout design, responsiveness, and matching the original look & feel.
+📸 *Preview:*  
+![Movie Recommender Screenshot](images/movie_recommender.png)  
 
 ---
 
-## 💡 About Me
+### 📰 News App (Tkinter + Mediastack API)  
+- A desktop application that fetches and displays real-time news headlines.  
+- Developed using **Python's Tkinter** GUI and **Mediastack API**.  
+- Features: Search bar, filters, categories, responsive scrollable interface.  
+- Added **UI screenshots for a modern look**.  
 
-I'm **Aditya Gupta**, a Computer Science student passionate about:
-- 🖥️ Full Stack Web Development
-- 🤖 Python & AI Projects
-- 🛠️ Building smart and useful tools
+📸 *Preview:*  
+![News App Screenshot](images/news_app.png)  
+
+---
+
+### 💰 Banking System (Console + GUI)  
+- Console and GUI-based banking system using **advanced OOP concepts in Python**.  
+- GUI version supports login, deposits, withdrawals, transfers, and transaction history.  
+- Demonstrates inheritance, polymorphism, encapsulation, and file handling.  
+- Showcased with **screenshots of the GUI Banking Dashboard**.  
+
+📸 *Preview:*  
+![Banking System Screenshot](images/banking_system.png)  
+
+---
+
+### 🎲 CodeQuest: Dice Adventure (Final Game) ⭐  
+- A **techy multi-game adventure app** built with the **MERN Stack** (MongoDB, Express, React, Node.js) + HTML/CSS.  
+- Combines **logic puzzles, coding challenges, and mini-games** into one journey.  
+
+#### 🔟 Games Included:  
+1. **Guess the Number**  
+2. **Code Unlock**  
+3. **Wordle**  
+4. **Word Finder**  
+5. **Logic Detective**  
+6. **Crack the Logic**  
+7. **Tech Riddle**  
+8. **Memory Hacker**  
+9. **Hangman** (with difficulty modes & hints)  
+10. **Sudoku** (modern UI + win animations)  
+
+#### 🎯 Final Concept:  
+- After completing the 8 main games, players unlock **CodeQuest: Dice Adventure**.  
+- Each player **rolls a dice** to move across a **25-tile board map**.  
+- Each tile may contain:  
+  - 🧩 A logic puzzle  
+  - 💻 A coding challenge  
+  - 🐞 A “bug” to fix  
+  - 🎁 A surprise reward  
+- Players compete for a **cash prize** by finishing the game in the shortest time with required stats.  
+- Includes **prize system, retry limits, and sequential unlocking for normal players**.  
+
+📸 *Preview:*  
+![CodeQuest Dice Adventure Screenshot](images/codequest.png)  
+
+---
+
+### 🌟 SmartBox – All-in-One Utility Manager App  
+
+*SmartBox* is a **multi-utility app** with 6 mini-projects in one place.  
+
+#### ✨ Features (Modules):  
+1️⃣ **Scientific Calculator** – Advanced math operations (arithmetic, trig, power).  
+2️⃣ **Stopwatch Web App** – Start/stop, laps, reset.  
+3️⃣ **Digital Clock** – Real-time system clock with clean UI.  
+4️⃣ **Weather App** – Real-time weather from OpenWeather API.  
+5️⃣ **Currency Converter** – Multi-currency support with live rates.  
+6️⃣ **Unit Converter** – Convert length, weight, volume, etc.  
+
+📸 *Preview:*  
+![SmartBox Screenshot](images/smartbox.png)  
+
+---
+
+### 🛒 Blinkit App Clone (Shopping Management System)  
+- A **Shopping Management System** inspired by Blinkit’s workflow.  
+- Built using **Python Django / Full Stack Concepts**.  
+- Handles product listing, cart management, billing, and order history.  
+- Focus on **scalable backend and modern frontend**.  
+
+📸 *Preview:*  
+![Blinkit Clone Screenshot](images/blinkit.png)  
+
+---
+
+### 🌀 App Cloner (UI Clones of Famous Apps)  
+- Frontend clones of popular apps including **Spotify, Zomato, Facebook, Instagram, Amazon, YouTube**.  
+- Created using **HTML, CSS, JavaScript**.  
+- Focused on **layout design, responsiveness, and matching the original look & feel**.  
+
+📸 *Preview:*  
+![App Cloner Screenshot](images/app_cloner.png)  
+
+---
+
+## 💡 About Me  
+
+I'm **Aditya Gupta**, a Computer Science student passionate about:  
+- 🖥️ Full Stack Web Development  
+- 🤖 Python & AI Projects  
+- 🛠️ Building smart and useful tools  
 
 🔗 [LinkedIn](https://www.linkedin.com/in/aditya-gupta-a2685b312)  
-💻 [GitHub](https://github.com/aditya262006)
+💻 [GitHub](https://github.com/aditya262006)  
 
 ---
 
-## 📝 How to Use This Repo
+## 📝 How to Use This Repo  
 
-Each project is placed in a **separate folder** with:
-- Source code (`.py`, `.html`, `.js`, etc.)
-- `README.md` for that project
-- Instructions to run or deploy
+Each project is placed in a **separate folder** with:  
+- Source code (`.py`, `.html`, `.js`, etc.)  
+- `README.md` for that project  
+- Instructions to run or deploy  
 
-Clone this repo and explore the projects that interest you!
+Clone this repo and explore the projects that interest you!  
 
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
---- 
-
-🧠 Final Thought
-
+##🧠 Final Thought
 "Code is like humor. When you have to explain it, it’s bad." – Cory House
 
 Thanks for visiting! ⭐ Star this repo if you find it useful.
