@@ -66,7 +66,7 @@ This space showcases my **personal and academic projects** built while learning 
   - 🎁 A surprise reward  
 
 📸 *Preview:*  
-![CodeQuest Dice Adventure Screenshot(https://github.com/aditya262006/logic-detective-puzzles/blob/main/CodeQuest2.png)  
+![CodeQuest Dice Adventure Screenshot(blob:https://github.com/a89c2a48-8936-49ee-ab2c-4b8f8f29deaf)  
 
 ---
 
