@@ -70,8 +70,6 @@ This space showcases my **personal and academic projects** built while learning 
 5️⃣ **Currency Converter** – Multi-currency support with live rates.  
 6️⃣ **Unit Converter** – Convert length, weight, volume, etc.  
 
-📸 *Preview:*  
-![SmartBox Screenshot](images/smartbox.png)  
 
 ---
 
@@ -81,8 +79,7 @@ This space showcases my **personal and academic projects** built while learning 
 - Handles product listing, cart management, billing, and order history.  
 - Focus on **scalable backend and modern frontend**.  
 
-📸 *Preview:*  
-![Blinkit Clone Screenshot](images/blinkit.png)  
+ 
 
 ---
 
@@ -110,7 +107,10 @@ Clone this repo and explore the projects that interest you!
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
-##🧠 Final Thought
+
+---
+
+🧠 Final Thought
 "Code is like humor. When you have to explain it, it’s bad." – Cory House
 
 Thanks for visiting! ⭐ Star this repo if you find it useful.
