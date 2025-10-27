@@ -1,8 +1,5 @@
 # 💰 Banking Management System by Aditya Gupta
 
-
-- Python Console & GUI
-
 This is a **Python-based Banking Management System** that supports both **console** and **GUI (Tkinter)** versions. It simulates basic banking operations such as account creation, deposit, withdrawal, and balance checks — using core **OOP concepts** and **file storage**.
 
 ---
@@ -38,7 +35,7 @@ This is a **Python-based Banking Management System** that supports both **consol
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/banking-system.git
+git clone https://github.com/aditya262006/banking-system.git
 cd banking-system
 ```
 ## 👨‍💻 About Me
