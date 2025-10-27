@@ -30,7 +30,7 @@ A fully functional **scientific calculator** built using **Python Tkinter**, ins
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/scientific-calculator.git
+git clone https://github.com/aditya262006/scientific-calculator.git
 cd scientific-calculator
 ```
 2.Run the Python script:
