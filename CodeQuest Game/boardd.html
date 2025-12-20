@@ -1,0 +1,110 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Adventure Quest Board Game</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="board.css">
+</head>
+
+<body>
+
+<div class="title-container">
+  <h1>Adventure Quest</h1>
+</div>
+
+<div class="wrap">
+  <div class="board" id="board">
+    <div id="pawn"></div>
+  </div>
+</div>
+
+<button id="helpIcon" title="How to Play">❓</button>
+<canvas id="confettiCanvas"></canvas>
+<canvas id="shareCanvas" width="1080" height="1350" hidden></canvas>
+
+<div class="legend" aria-hidden="true">
+  <div class="item"><div class="dot"></div> Challenge (★)</div>
+  <div class="item"><div class="qdot"></div> Random event (?)</div>
+</div>
+
+<div class="dice-ui-container">
+  <div class="stage">
+    <div class="cube" id="cube">
+      <div class="face front"><div class="pos5"><div class="pip"></div></div></div>
+      <div class="face back">
+        <div class="pos1"><div class="pip"></div></div>
+        <div class="pos3"><div class="pip"></div></div>
+        <div class="pos1" style="grid-area:2/1"><div class="pip"></div></div>
+        <div class="pos3" style="grid-area:2/3"><div class="pip"></div></div>
+        <div class="pos7"><div class="pip"></div></div>
+        <div class="pos9"><div class="pip"></div></div>
+      </div>
+      <div class="face right"><div class="pos3"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div></div>
+      <div class="face left"><div class="pos1"><div class="pip"></div></div><div class="pos3"><div class="pip"></div></div><div class="pos5"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div><div class="pos9"><div class="pip"></div></div></div>
+      <div class="face top"><div class="pos3"><div class="pip"></div></div><div class="pos5"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div></div>
+      <div class="face bottom"><div class="pos1"><div class="pip"></div></div><div class="pos3"><div class="pip"></div></div><div class="pos7"><div class="pip"></div></div><div class="pos9"><div class="pip"></div></div></div>
+    </div>
+  </div>
+
+  <div class="dice-result-card" id="resultCard">Click to Roll!</div>
+  <button id="rollBtn">Roll 🎲</button>
+</div>
+
+<button id="open-chat-btn">🤖 Game Help</button>
+
+<div id="chatbot-modal" class="hidden">
+  <div id="chat-window">
+    <div id="chat-header">
+      <h3>Game Master AI</h3>
+      <button id="close-chat-btn">&times;</button>
+    </div>
+    <div id="chat-log">
+      <div class="message bot">
+        Hello! I'm the Game Master. Ask me anything about the adventure board or the mini-games!
+      </div>
+    </div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Ask a question..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="winModal" class="end-modal hidden">
+  <div class="end-card">
+    <h2>🏆 ADVENTURE COMPLETED!</h2>
+    <p id="playerSummary"></p>
+    <button onclick="downloadShareCard()">📸 Download Share Card</button>
+    <button onclick="location.reload()">🔁 Play Again</button>
+  </div>
+</div>
+
+<div id="loseModal" class="end-modal hidden">
+  <div class="end-card" style="box-shadow:0 0 40px crimson">
+    <h2>💀 YOU FAILED</h2>
+    <p>Better luck next time, adventurer.</p>
+    <button onclick="location.reload()">🔁 Restart</button>
+    <button onclick="window.location.href='loadingscreen.html'">❌ Exit</button>
+  </div>
+</div>
+
+<!-- PUZZLE MODAL -->
+<div id="puzzleOverlay" class="hidden">
+  <div id="puzzleContainer">
+    <div id="puzzleHeader">
+      <span id="puzzleTitle">Challenge</span>
+      <button id="exitPuzzle" disabled>✖</button>
+    </div>
+    <iframe id="puzzleFrame"></iframe>
+  </div>
+</div>
+
+<script src="board.js"></script>
+</body>
+</html>
