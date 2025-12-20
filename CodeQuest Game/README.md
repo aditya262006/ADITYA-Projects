@@ -68,7 +68,8 @@ A detective-style puzzle game combining **image-based puzzles and passage-based 
 - JSON-based puzzle handling  
 - Logical reasoning  
 - UI state control  
-
+Game UI
+<img width="1919" height="1031" alt="image" src="https://github.com/user-attachments/assets/0eb62942-7431-45fa-a5a7-eb530a33f7b9" />
 ---
 
 ## 🔐 Code Unlock  
@@ -84,7 +85,8 @@ A code-breaking game where players solve logic challenges to unlock the next lev
 ### 🧠 Concepts Used
 - Conditional checks  
 - Level management  
-
+Game UI
+<img width="882" height="520" alt="image" src="https://github.com/user-attachments/assets/604b3bd0-4b68-44b0-8b8e-947b7b0af15a" />
 ---
 
 ## 🧠 Pattern Cracker  
@@ -100,7 +102,8 @@ A brain game focused on identifying number, symbol, and logical patterns.
 ### 🧠 Concepts Used
 - Mathematical logic  
 - Pattern detection  
-
+Game UI
+<img width="886" height="729" alt="image" src="https://github.com/user-attachments/assets/316d56b8-d608-4641-bebe-a7841a38babf" />
 ---
 
 ## 🧪 Tech Riddle  
@@ -116,7 +119,8 @@ A quiz-style game with riddles related to programming and computer science.
 ### 🧠 Concepts Used
 - Question banks  
 - Event handling  
-
+Game UI
+<img width="706" height="515" alt="image" src="https://github.com/user-attachments/assets/91bbfc32-84db-4911-b49a-4b6d8bde121a" />
 ---
 
 ## 🧠 Memory Hacker  
@@ -133,7 +137,8 @@ A memory-based game where players remember sequences, patterns, or cards.
 - Arrays  
 - Timers  
 - UI feedback  
-
+Game UI
+<img width="1916" height="1028" alt="image" src="https://github.com/user-attachments/assets/fd57d1c2-dd03-4bfa-91fc-dd6405e6c906" />
 ---
 
 ## 🔤 Hangman Game (Multi-Level)  
@@ -155,6 +160,8 @@ A modern Hangman game with multiple difficulty levels and enhanced visuals.
 ### 🧠 Concepts Used
 - Conditional rendering  
 - Game flow control  
+Game UI
+<img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />
 
 ---
 
@@ -171,7 +178,26 @@ A simple yet engaging game where players guess a randomly generated number withi
 ### 🧠 Concepts Used
 - Randomization  
 - Conditional logic  
+Game UI
+<img width="778" height="702" alt="image" src="https://github.com/user-attachments/assets/27c844c6-35e1-4afe-aa63-d82247000eee" />
+---
+## 🔍 Word Finder  
+**Crossword-Style Word Puzzle Game**
 
+A word puzzle game inspired by crossword mechanics where players find words using a dynamic grid and letter-wheel interaction.
+
+### 🔹 Features
+- Dynamic crossword-style grid  
+- Letter wheel word formation  
+- Hint system  
+- Level-based progression  
+
+### 🧠 Concepts Used
+- String manipulation  
+- Grid-based algorithms  
+- UI interaction logic
+Game UI
+<img width="638" height="894" alt="image" src="https://github.com/user-attachments/assets/4f479ff4-12d7-42f7-b84f-346d4d1c6453" />
 ---
 
 ## 🧩 Wordle  
@@ -187,7 +213,8 @@ A word puzzle game inspired by Wordle, where players guess the correct word with
 ### 🧠 Concepts Used
 - String manipulation  
 - Array comparison  
-
+Game UI
+<img width="855" height="933" alt="image" src="https://github.com/user-attachments/assets/73d6b226-f4b2-4ce4-bad2-4aeeb4c8eea6" />
 ---
 
 ## 🧠 Sudoku Game  
@@ -203,6 +230,8 @@ A classic Sudoku game with input validation and win detection.
 ### 🧠 Concepts Used
 - Grid logic  
 - Backtracking basics  
+Game UI
+<img width="571" height="738" alt="image" src="https://github.com/user-attachments/assets/6eecbbf4-adf5-40ff-81f5-2dbf5396da28" />
 
 ---
 
@@ -259,4 +288,4 @@ This project is licensed under the MIT License – free to use and modify.
 
 ---
 
-⭐ **If you like my work, consider giving this repository a star!**
+## ⭐ **If you like my work, consider giving this repository a star!**
