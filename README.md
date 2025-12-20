@@ -36,6 +36,23 @@ Working Model Diagram <img width="820" height="297" alt="image" src="https://git
 
 ---
 
+## ⌨️🛡️ Typing Defense – Word Shooter Game (C++)
+Typing Defense is a console-based word shooter game developed in C++, designed to improve typing speed, accuracy, and reaction time in a fun and challenging way.
+
+The player must type incoming words correctly before they reach the base. Each correct word destroys an enemy, while delays or mistakes increase the danger level.
+
+### 🎮 Game Concept
+-Words appear on the screen as incoming enemies
+-Player must type the exact word to eliminate the enemy
+-Each correct word scores points
+-Wrong or delayed typing leads to game over
+-Difficulty increases as the game progresses
+-This game combines typing practice with arcade-style gameplay.
+Game UI
+<img width="874" height="709" alt="image" src="https://github.com/user-attachments/assets/05559783-aa6c-461c-9d41-01b7e3f2648b" />
+
+---
+
 ## 🎬 Movie Recommender Web App
 
 A **content-based movie recommendation system** that suggests movies based on user preferences.
