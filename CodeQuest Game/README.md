@@ -180,8 +180,10 @@ A simple yet engaging game where players guess a randomly generated number withi
 - Conditional logic  
 Game UI
 <img width="778" height="702" alt="image" src="https://github.com/user-attachments/assets/27c844c6-35e1-4afe-aa63-d82247000eee" />
+
 ---
-## 🔍 Word Finder  
+
+### 🔍 Word Finder  
 **Crossword-Style Word Puzzle Game**
 
 A word puzzle game inspired by crossword mechanics where players find words using a dynamic grid and letter-wheel interaction.
@@ -248,6 +250,9 @@ A chatbot integrated into games to assist players and answer basic queries.
 ### 🧠 Concepts Used
 - Input parsing  
 - Conditional responses  
+
+Chatbot UI 
+<img width="493" height="670" alt="Screenshot 2025-12-18 121859" src="https://github.com/user-attachments/assets/21e2ab60-6cd6-47b7-85f1-f0419ba0bffb" />
 
 ---
 
