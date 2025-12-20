@@ -1,116 +1,218 @@
 # 👨‍💻 Aditya Gupta's Project Repository
 
 Welcome to my official GitHub repository!  
-This space showcases my **personal and academic projects** built while learning and exploring **Web Development**, **Python**, **Machine Learning**, and more.
+This repository showcases my **academic and personal projects** built while exploring **Java, Python, Web Development, Game Logic, APIs, and AI-powered features**.
+
+Each project reflects my focus on **strong fundamentals, clean logic, and real-world usability**.
 
 ---
 
 ## 🗂️ Projects Included
 
-### 🎬 Movie Recommender Web App  
-- A Flask-based app that recommends movies based on user input using **content-based filtering**.  
-- Built with **Python**, **Flask**, and **HTML/CSS**.  
-- Features: Genre detection, similarity matching, poster previews.  
-- Includes **frontend previews with movie posters** for better user experience.  
+---
+
+## 💬 Java Console-Based Chat Application ⭐
+
+A **real-time, multi-user console chat system** built using **Core Java**, demonstrating **network programming and multithreading**.
+
+### 🔹 Key Features
+- Client–Server architecture
+- Multiple clients supported simultaneously
+- Each client handled via a separate thread
+- Real-time text communication
+- Lightweight and platform-independent
+
+### 🔹 Technologies Used
+- Java
+- Socket & ServerSocket
+- Multithreading
+- BufferedReader & PrintWriter
+- OOP concepts
+
+### 📸 Output Preview
+![Java Chat Server](https://raw.githubusercontent.com/github/explore/main/topics/java/java.png)
+![Java Chat Client](https://raw.githubusercontent.com/github/explore/main/topics/socket/socket.png)
 
 ---
 
-### 📰 News Application 
-- A desktop application that fetches and displays real-time news headlines.  
-- Developed using **Python's Tkinter** GUI and **Mediastack API**.  
-- Features: Search bar, filters, categories, responsive scrollable interface.  
-- Added **UI screenshots for a modern look**.  
+## 🎬 Movie Recommender Web App
+
+A **content-based movie recommendation system** that suggests movies based on user preferences.
+
+### 🔹 Features
+- Genre-based similarity matching
+- Movie poster previews
+- Clean and simple UI
+- User input–driven recommendations
+
+### 🔹 Tech Stack
+- Python
+- Flask
+- HTML / CSS
+
+### 📸 Output Preview
+![Movie Recommender UI](https://miro.medium.com/v2/resize:fit:1400/1*Z0C5rE1KZP6pUXJ9x0pQ1Q.png)
 
 ---
 
-### 💰 Banking System   
-- Console and GUI-based banking system using **advanced OOP concepts in Python**.  
-- GUI version supports login, deposits, withdrawals, transfers, and transaction history.  
-- Demonstrates inheritance, polymorphism, encapsulation, and file handling.  
-- Showcased with **screenshots of the GUI Banking Dashboard**.  
+## 📰 News Application
+
+A **desktop-based news reader application** that fetches real-time headlines using an external API.
+
+### 🔹 Features
+- Live news fetching
+- Search and category filters
+- Scrollable content layout
+- Modern Tkinter UI
+
+### 🔹 Tech Stack
+- Python
+- Tkinter
+- Mediastack API
+
+### 📸 Output Preview
+![News App UI](https://i.imgur.com/3ZQ3Z7F.png)
 
 ---
 
-### 🎲 CodeQuest: Dice Adventure (FullStack Game) ⭐  
-- A **techy multi-game adventure app** built with the **MERN Stack** (MongoDB, Express, React.js, Node.js) + HTML/CSS.  
-- Combines **logic puzzles, coding challenges, and mini-games** into one journey.  
+## 💰 Banking System (Console + GUI)
 
-#### 🔟 Games Included:  
-1. **Guess the Number**  
-2. **Code Unlock**  
-3. **Wordle**  
-4. **Word Finder**  
-5. **Logic Detective**  
-6. **Crack the Logic**  
-7. **Tech Riddle**  
-8. **Memory Hacker**  
-9. **Hangman** (with difficulty modes & hints)  
-10. **Sudoku** (modern UI + win animations)  
+A banking management system demonstrating **advanced Object-Oriented Programming concepts**.
 
-## 🎯 Concept:  
-- **CodeQuest: Dice Adventure** is a board game built with modern techy games 
-- Each player **rolls a dice** to move across a **25-tile board map**.  
-- Each tile may contain:  
-  - 🧩 A logic puzzle  
-  - 💻 A coding challenge  
-  - 🐞 A “bug” to fix  
-  - 🎁 A surprise reward  
+### 🔹 Features
+- User authentication
+- Deposit, withdrawal, and fund transfer
+- Transaction history
+- File handling for data persistence
+
+### 🔹 Tech Stack
+- Python
+- Tkinter
+- OOP & File Handling
+
+### 📸 Output Preview
+![Banking System GUI](https://i.imgur.com/MlC0kQX.png)
 
 ---
 
-### 🌟 SmartBox – All-in-One Utility Manager App  
+## 🎲 CodeQuest: Dice Adventure ⭐⭐⭐
 
-*SmartBox* is a **multi-utility app** with 6 mini-projects in one place.  
+**CodeQuest: Dice Adventure** is a **logic-based board game platform** built using **HTML, CSS, and JavaScript**.
 
-#### ✨ Features (Modules):  
-1️⃣ **Scientific Calculator** – Advanced math operations (arithmetic, trig, power).  
-2️⃣ **Stopwatch Web App** – Start/stop, laps, reset.  
-3️⃣ **Digital Clock** – Real-time system clock with clean UI.  
-4️⃣ **Weather App** – Real-time weather from OpenWeather API.  
-5️⃣ **Currency Converter** – Multi-currency support with live rates.  
-6️⃣ **Unit Converter** – Convert length, weight, volume, etc.  
+### 🎯 Core Concept
+- 25-tile board map
+- Dice-based player movement
+- Each tile may contain:
+  - Logic puzzles
+  - Coding challenges
+  - Mini-games
+  - Surprise rewards
 
+### 🔐 Game Modes
+- **Special Player Mode** – Full access via special ID
+- **Normal Player Mode** – Sequential game unlocking
+- More than 2 failures → restart journey
+
+### 🎮 Games Included
+1. Code Unlock  
+2. Logic Detective  
+3. Pattern Cracker  
+4. Tech Riddle  
+5. Memory Hacker  
+6. Hangman (multiple difficulty levels + hints)  
+7. Flappy Bird  
+8. Sudoku (modern UI + win animation)
+
+### 🔹 Tech Stack
+- HTML
+- CSS
+- JavaScript
+
+### 📸 Output Preview
+![Dice Game Board](https://i.imgur.com/0XQZ7YQ.png)
+![Hangman Game](https://i.imgur.com/jmZ8j8Z.png)
 
 ---
 
-### 🛒 Blinkit App Clone (Shopping Management System)  
-- A **Shopping Management System** inspired by Blinkit’s workflow.  
-- Built using **Python Django / Full Stack Concepts**.  
-- Handles product listing, cart management, billing, and order history.  
-- Focus on **scalable backend and modern frontend**.  
+## 🤖 Built-In Chatbot (Game Assistant)
 
- 
+An **interactive chatbot system** integrated into games and applications.
 
----
+### 🔹 Purpose
+- Guides players during gameplay
+- Provides hints and explanations
+- Responds dynamically to game state
+- Enhances user engagement
 
-## 💡 About Me  
+### 🔹 Highlights
+- Rule-based logic
+- Fixed win/loss looping issues
+- Acts as an in-game assistant
 
-I'm **Aditya Gupta**, a Computer Science student passionate about:  
-- 🖥️ Full Stack Web Development  
-- 🤖 Python & AI Projects  
-- 🛠️ Building smart and useful tools  
-
-🔗 [LinkedIn](https://www.linkedin.com/in/aditya-gupta-a2685b312)  
-💻 [GitHub](https://github.com/aditya262006)  
+### 📸 Preview
+![Chatbot UI](https://i.imgur.com/6XKQ4YF.png)
 
 ---
 
-## 📝 How to Use This Repo  
+## 🌟 SmartBox – All-in-One Utility Manager
 
-Each project is placed in a **separate folder** with:  
-- Source code (`.py`, `.html`, `.js`, etc.)  
-- `README.md` for that project  
-- Instructions to run or deploy  
+A **multi-utility web application** combining everyday tools in one platform.
 
-Clone this repo and explore the projects that interest you!  
+### 🔹 Modules
+- Scientific Calculator
+- Stopwatch
+- Digital Clock
+- Weather App
+- Currency Converter
+- Unit Converter
 
+### 📸 Output Preview
+![Smart Utility App](https://i.imgur.com/YkE9H3E.png)
+
+---
+
+## 🛒 Blinkit App Clone (Shopping Management System)
+
+A shopping management system inspired by Blinkit’s workflow.
+
+### 🔹 Features
+- Product listing
+- Cart management
+- Billing system
+- Order history
+
+### 📸 Output Preview
+![Shopping App UI](https://i.imgur.com/5M2y9pB.png)
+
+---
+
+## 💡 About Me
+
+I’m **Aditya Gupta**, a Computer Science student passionate about:
+
+- Web Development (HTML, CSS, JavaScript)
+- Java & Core CS fundamentals
+- Python & AI-based logic systems
+- Building interactive games and tools
+
+🔗 LinkedIn: https://www.linkedin.com/in/aditya-gupta-a2685b312  
+💻 GitHub: https://github.com/aditya262006  
+
+---
+
+## 📝 How to Use This Repository
+
+Each project is organized in a **separate folder** containing:
+- Source code
+- Screenshots
+- Project-specific README
+
+### 🔽 Clone the Repository
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
-
----
-
 🧠 Final Thought
-"Code is like humor. When you have to explain it, it’s bad." – Cory House
 
-Thanks for visiting! ⭐ Star this repo if you find it useful.
+"First, solve the problem. Then, write the code." – John Johnson
+
+⭐ Star this repository if you find it useful!
