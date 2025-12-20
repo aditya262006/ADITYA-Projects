@@ -138,13 +138,24 @@ Banking System GUI
 ### 📸 Output Preview
 Loading Screen Board <img width="1918" height="1031" alt="image" src="https://github.com/user-attachments/assets/fe668ace-fbac-45f2-9507-a5dacfab14ca" />
 
-![Dice Game Board](<img width="1916" height="939" alt="image" src="https://github.com/user-attachments/assets/4ec3a3ab-7e40-4787-9b9e-be62d8dddb0b" />)
-![Hangman Game](<img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />)
-![Code Unlock Game](<img width="882" height="520" alt="image" src="https://github.com/user-attachments/assets/604b3bd0-4b68-44b0-8b8e-947b7b0af15a" />)
+Dice Game Board <img width="1916" height="939" alt="image" src="https://github.com/user-attachments/assets/4ec3a3ab-7e40-4787-9b9e-be62d8dddb0b" />
 
-![Word Finder Game](<img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />)
-![Wordle Game](<img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />)
-![Guess the Number Game](<img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />)
+Hangman Game <img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />
+
+Code Unlock Game <img width="882" height="520" alt="image" src="https://github.com/user-attachments/assets/604b3bd0-4b68-44b0-8b8e-947b7b0af15a" />
+
+Word Finder Game <img width="638" height="894" alt="image" src="https://github.com/user-attachments/assets/4f479ff4-12d7-42f7-b84f-346d4d1c6453" />
+
+
+Wordle Game <img width="855" height="933" alt="image" src="https://github.com/user-attachments/assets/73d6b226-f4b2-4ce4-bad2-4aeeb4c8eea6" />
+
+Guess the Number Game <img width="778" height="702" alt="image" src="https://github.com/user-attachments/assets/27c844c6-35e1-4afe-aa63-d82247000eee" />
+
+Sudoku Game <img width="571" height="738" alt="image" src="https://github.com/user-attachments/assets/6eecbbf4-adf5-40ff-81f5-2dbf5396da28" />
+
+Crack The Logic Game <img width="886" height="729" alt="image" src="https://github.com/user-attachments/assets/316d56b8-d608-4641-bebe-a7841a38babf" />
+
+
 ---
 
 ## 🤖 Built-In Chatbot (Game Assistant)
@@ -163,8 +174,7 @@ An **interactive chatbot system** integrated into games and applications.
 - Acts as an in-game assistant
 
 ### 📸 Preview
-![Chatbot UI](<img width="493" height="670" alt="Screenshot 2025-12-18 121859" src="https://github.com/user-attachments/assets/21e2ab60-6cd6-47b7-85f1-f0419ba0bffb" />
-)
+Chatbot UI <img width="493" height="670" alt="Screenshot 2025-12-18 121859" src="https://github.com/user-attachments/assets/21e2ab60-6cd6-47b7-85f1-f0419ba0bffb" />
 
 ---
 
@@ -181,7 +191,7 @@ A **multi-utility web application** combining everyday tools in one platform.
 - Unit Converter
 
 ### 📸 Output Preview
-![Smart Utility App](https://i.imgur.com/YkE9H3E.png)
+Smart Utility App <img width="800" height="348" alt="image" src="https://github.com/user-attachments/assets/5fa18a43-3436-48c2-9b57-9426e83f4bc5" />
 
 ---
 
@@ -196,7 +206,8 @@ A shopping management system inspired by Blinkit’s workflow.
 - Order history
 
 ### 📸 Output Preview
-![Shopping App UI](https://i.imgur.com/5M2y9pB.png)
+Shopping App UI <img width="1582" height="808" alt="image" src="https://github.com/user-attachments/assets/d4071b2a-7c3c-4f21-931d-47bcb730c53b" />
+
 
 ---
 
@@ -225,8 +236,8 @@ Each project is organized in a **separate folder** containing:
 ```bash
 git clone https://github.com/aditya262006/ADITYA-Projects.git
 ```
-🧠 Final Thought
+## 🧠 Final Thought
 
 "First, solve the problem. Then, write the code." – John Johnson
 
-⭐ Star this repository if you find it useful!
+### ⭐ Star this repository if you find it useful!
