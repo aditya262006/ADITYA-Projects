@@ -70,7 +70,8 @@ A **content-based movie recommendation system** that suggests movies based on us
 
 ### 📸 Output Preview
 Movie Recommender UI
-<img width="1024" height="525" alt="image" src="https://github.com/user-attachments/assets/78886448-32dd-44a9-a391-dee7a4a44b1c" />
+<img width="1881" height="917" alt="image" src="https://github.com/user-attachments/assets/936125a8-4072-4e2c-9a08-07bf5ba97b57" />
+
 
 ---
 
