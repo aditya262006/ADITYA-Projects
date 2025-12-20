@@ -30,9 +30,9 @@ A **real-time, multi-user console chat system** built using **Core Java**, demon
 - OOP concepts
 
 ### 📸 Output Preview
-![Java Chat Server](<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5600451b-a45f-45fe-aafc-a7b37a5b48fa" />)
-(<img width="1692" height="846" alt="image" src="https://github.com/user-attachments/assets/268bb348-1027-4ead-bf91-9d44046c3034" />)
-<img width="820" height="297" alt="image" src="https://github.com/user-attachments/assets/eede764e-ab2f-46ca-8f8d-e62f923e0ee9" />
+ Java Chat Server <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5600451b-a45f-45fe-aafc-a7b37a5b48fa" />
+Java Chat Client <img width="1692" height="846" alt="image" src="https://github.com/user-attachments/assets/268bb348-1027-4ead-bf91-9d44046c3034" />
+ Working Model Diagram <img width="820" height="297" alt="image" src="https://github.com/user-attachments/assets/eede764e-ab2f-46ca-8f8d-e62f923e0ee9" />
 
 ---
 
