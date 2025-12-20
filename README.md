@@ -145,9 +145,11 @@ Banking System GUI
 4. Tech Riddle  
 5. Memory Hacker  
 6. Hangman (multiple difficulty levels + hints)  
-7. Flappy Bird  
+7. Wordle
 8. Sudoku (modern UI + win animation)
-
+9. Word Finder
+10. Guess the Number
+    
 ### 🔹 Tech Stack
 - HTML
 - CSS
@@ -163,7 +165,6 @@ Hangman Game <img width="837" height="930" alt="image" src="https://github.com/u
 Code Unlock Game <img width="882" height="520" alt="image" src="https://github.com/user-attachments/assets/604b3bd0-4b68-44b0-8b8e-947b7b0af15a" />
 
 Word Finder Game <img width="638" height="894" alt="image" src="https://github.com/user-attachments/assets/4f479ff4-12d7-42f7-b84f-346d4d1c6453" />
-
 
 Wordle Game <img width="855" height="933" alt="image" src="https://github.com/user-attachments/assets/73d6b226-f4b2-4ce4-bad2-4aeeb4c8eea6" />
 
