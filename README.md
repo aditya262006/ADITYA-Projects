@@ -30,9 +30,9 @@ A **real-time, multi-user console chat system** built using **Core Java**, demon
 - OOP concepts
 
 ### 📸 Output Preview
- Java Chat Server <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5600451b-a45f-45fe-aafc-a7b37a5b48fa" />
+Java Chat Server <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5600451b-a45f-45fe-aafc-a7b37a5b48fa" />
 Java Chat Client <img width="1692" height="846" alt="image" src="https://github.com/user-attachments/assets/268bb348-1027-4ead-bf91-9d44046c3034" />
- Working Model Diagram <img width="820" height="297" alt="image" src="https://github.com/user-attachments/assets/eede764e-ab2f-46ca-8f8d-e62f923e0ee9" />
+Working Model Diagram <img width="820" height="297" alt="image" src="https://github.com/user-attachments/assets/eede764e-ab2f-46ca-8f8d-e62f923e0ee9" />
 
 ---
 
@@ -52,8 +52,8 @@ A **content-based movie recommendation system** that suggests movies based on us
 - HTML / CSS
 
 ### 📸 Output Preview
-![Movie Recommender UI](<img width="1024" height="525" alt="image" src="https://github.com/user-attachments/assets/78886448-32dd-44a9-a391-dee7a4a44b1c" />
-)
+Movie Recommender UI
+<img width="1024" height="525" alt="image" src="https://github.com/user-attachments/assets/78886448-32dd-44a9-a391-dee7a4a44b1c" />
 
 ---
 
@@ -73,8 +73,9 @@ A **desktop-based news reader application** that fetches real-time headlines usi
 - Mediastack API
 
 ### 📸 Output Preview
-![News App UI](<img width="1352" height="730" alt="image" src="https://github.com/user-attachments/assets/4fd25018-70c1-4d79-9db6-dc12f6098f0c" />
-)
+News App UI
+<img width="1352" height="730" alt="image" src="https://github.com/user-attachments/assets/4fd25018-70c1-4d79-9db6-dc12f6098f0c" />
+
 
 ---
 
@@ -94,9 +95,10 @@ A banking management system demonstrating **advanced Object-Oriented Programming
 - OOP & File Handling
 
 ### 📸 Output Preview
-![Banking System GUI](<img width="811" height="561" alt="image" src="https://github.com/user-attachments/assets/a5ede7dc-95e7-45da-a799-d0fe844f69c1" />
+Banking System GUI
+<img width="811" height="561" alt="image" src="https://github.com/user-attachments/assets/a5ede7dc-95e7-45da-a799-d0fe844f69c1" />
 <img width="1200" height="634" alt="image" src="https://github.com/user-attachments/assets/dd81f661-7db0-4873-94d4-016735bac511" />
-)
+
 
 ---
 
@@ -134,7 +136,7 @@ A banking management system demonstrating **advanced Object-Oriented Programming
 - JavaScript
 
 ### 📸 Output Preview
-![Loading Screen Board](<img width="1918" height="1031" alt="image" src="https://github.com/user-attachments/assets/fe668ace-fbac-45f2-9507-a5dacfab14ca" />)
+Loading Screen Board <img width="1918" height="1031" alt="image" src="https://github.com/user-attachments/assets/fe668ace-fbac-45f2-9507-a5dacfab14ca" />
 
 ![Dice Game Board](<img width="1916" height="939" alt="image" src="https://github.com/user-attachments/assets/4ec3a3ab-7e40-4787-9b9e-be62d8dddb0b" />)
 ![Hangman Game](<img width="837" height="930" alt="image" src="https://github.com/user-attachments/assets/f9b8e4d3-7a10-496b-b982-ab5549174739" />)
