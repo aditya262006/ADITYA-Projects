@@ -30,176 +30,195 @@ Here are the **10 games** that make up the journey:
 
 ---
 
-### 🔹 Features
+## 🔹 Features
 - Dice-based movement system  
 - Game win & loss logic  
 - In-game chatbot for interaction  
 - Clean board-style UI  
 - Restart & replay functionality  
-
-### 🧠 Concepts Used
+---
+## 🧠 Concepts Used
 - Game state management  
 - Conditional logic  
 - DOM manipulation  
 - Event-driven programming  
-
+---
 ### 🖼️ UI Preview
-![Code Quest UI](https://your-image-link-here.png)
+Loading Screen Board <img width="1918" height="1031" alt="image" src="https://github.com/user-attachments/assets/fe668ace-fbac-45f2-9507-a5dacfab14ca" />
+
+Dice Game Board <img width="1916" height="939" alt="image" src="https://github.com/user-attachments/assets/4ec3a3ab-7e40-4787-9b9e-be62d8dddb0b" />
 
 ### 🔗 Live Try
 👉 https://your-live-demo-link-here
 
 ---
+## 🧩 Logic Detective  
+**Logical Reasoning Puzzle Game**
 
-## 🧩 Logic Detective Game
-**Puzzle-Based Logical Reasoning Game**
-
-A detective-style puzzle game featuring image-based and passage-based riddles. Players must analyze clues, manage lives, and use hints wisely to solve each case.
+A detective-style puzzle game combining **image-based puzzles and passage-based riddles**. Players solve cases using logic, hints, and limited lives.
 
 ### 🔹 Features
-- Image puzzles + passage puzzles  
-- Life system with limited attempts  
+- Image + passage puzzles  
+- Life system  
 - Hint support  
 - Progressive difficulty  
-- Dark-themed modern UI  
+- Dark-themed UI  
 
 ### 🧠 Concepts Used
-- JSON-based puzzle loading  
-- Logical reasoning algorithms  
+- JSON-based puzzle handling  
+- Logical reasoning  
 - UI state control  
 
-### 🖼️ UI Preview
-![Logic Detective UI](https://your-image-link-here.png)
-
-### 🔗 Live Try
-👉 https://your-live-demo-link-here
-
 ---
 
-## 🧠 Sudoku Game
-**Classic Sudoku with Enhanced UI**
+## 🔐 Code Unlock  
+**Programming Logic Puzzle Game**
 
-A modern take on the classic Sudoku game with improved visuals and smooth gameplay.
+A code-breaking game where players solve logic challenges to unlock the next level.
 
 ### 🔹 Features
-- Clean & colorful grid UI  
-- Win animation on completion  
-- Start screen and reset option  
-- Input validation  
+- Logical puzzles  
+- Level-wise progression  
+- Instant feedback  
 
 ### 🧠 Concepts Used
-- Grid logic  
-- Backtracking basics  
-- UI feedback animations  
-
-### 🖼️ UI Preview
-![Sudoku UI](https://your-image-link-here.png)
-
-### 🔗 Live Try
-👉 https://your-live-demo-link-here
+- Conditional checks  
+- Level management  
 
 ---
 
-## 🔤 Hangman Game (Multi-Level)
-**Advanced Hangman with Difficulty Modes**
+## 🧠 Pattern Cracker  
+**Pattern Recognition Game**
 
-A fully enhanced Hangman game with multiple difficulty levels and classic visuals.
-
-### 🔹 Difficulty Levels
-- Easy – 10 turns  
-- Medium – 8 turns  
-- Hard – 6 turns  
-- Ultra Hard – 5 turns  
+A brain game focused on identifying number, symbol, and logical patterns.
 
 ### 🔹 Features
-- Progressive hangman drawing  
-- Hint system (Hard & Ultra Hard)  
-- Game-over animations  
-- Clean modern UI  
-- AI / dynamic word generation logic  
+- Pattern-based challenges  
+- Increasing difficulty  
+- Score tracking  
+
+### 🧠 Concepts Used
+- Mathematical logic  
+- Pattern detection  
+
+---
+
+## 🧪 Tech Riddle  
+**Technology-Based Riddle Game**
+
+A quiz-style game with riddles related to programming and computer science.
+
+### 🔹 Features
+- Tech riddles  
+- Multiple-choice questions  
+- Score system  
+
+### 🧠 Concepts Used
+- Question banks  
+- Event handling  
+
+---
+
+## 🧠 Memory Hacker  
+**Memory Challenge Game**
+
+A memory-based game where players remember sequences, patterns, or cards.
+
+### 🔹 Features
+- Memory challenges  
+- Timer-based gameplay  
+- Level progression  
+
+### 🧠 Concepts Used
+- Arrays  
+- Timers  
+- UI feedback  
+
+---
+
+## 🔤 Hangman Game (Multi-Level)  
+**Classic Hangman with Difficulty Modes**
+
+A modern Hangman game with multiple difficulty levels and enhanced visuals.
+
+### 🔹 Difficulty Levels
+- Easy  
+- Medium  
+- Hard  
+- Ultra Hard  
+
+### 🔹 Features
+- Progressive drawing  
+- Hint system  
+- Game-over logic  
 
 ### 🧠 Concepts Used
 - Conditional rendering  
 - Game flow control  
-- UI state synchronization  
-
-### 🖼️ UI Preview
-![Hangman UI](https://your-image-link-here.png)
-
-### 🔗 Live Try
-👉 https://your-live-demo-link-here
 
 ---
 
-## 🎯 Typing Defense – Word Shooter Game (C++)
-**Console-Based Typing & Reflex Game**
+## 🔢 Guess the Number  
+**Number Guessing Logic Game**
 
-A fast-paced C++ console game where players must type words correctly to destroy incoming enemies before they reach the base.
+A simple yet engaging game where players guess a randomly generated number within limited attempts.
 
 ### 🔹 Features
-- Real-time typing challenge  
-- Score tracking  
-- Increasing difficulty  
-- Game over conditions  
+- Random number generation  
+- Attempt tracking  
+- Instant feedback  
 
 ### 🧠 Concepts Used
-- File handling  
-- Loops & conditions  
-- Time-based logic  
-- OOP principles in C++  
-
-### 🖼️ UI Preview (Console)
-![Typing Defense Console](https://your-image-link-here.png)
+- Randomization  
+- Conditional logic  
 
 ---
 
-## 🤖 AI Chatbot Module
-**Rule-Based + AI-Ready Chatbot**
+## 🧩 Wordle  
+**Word Guessing Puzzle Game**
 
-An interactive chatbot integrated into games and web projects to assist users and respond to queries.
+A word puzzle game inspired by Wordle, where players guess the correct word within limited tries.
+
+### 🔹 Features
+- Word comparison logic  
+- Color-based feedback  
+- Limited attempts  
+
+### 🧠 Concepts Used
+- String manipulation  
+- Array comparison  
+
+---
+
+## 🧠 Sudoku Game  
+**Logic-Based Number Puzzle**
+
+A classic Sudoku game with input validation and win detection.
+
+### 🔹 Features
+- Valid Sudoku grid  
+- Reset option  
+- Win detection  
+
+### 🧠 Concepts Used
+- Grid logic  
+- Backtracking basics  
+
+---
+
+## 🤖 AI Chatbot Module  
+**Interactive Game Assistant**
+
+A chatbot integrated into games to assist players and answer basic queries.
 
 ### 🔹 Features
 - Real-time responses  
-- Game interaction support  
-- Extendable to AI-based APIs  
-- Clean conversational UI  
+- Game guidance  
+- Extendable to AI APIs  
 
 ### 🧠 Concepts Used
 - Input parsing  
-- Conditional response logic  
-- Event listeners  
-- Ready for AI integration  
-
-### 🖼️ UI Preview
-![Chatbot UI](https://your-image-link-here.png)
-
----
-
-## 💬 Console-Based Chat Application (Java)
-**Multi-Client Real-Time Chat System**
-
-A Java socket-based chat application allowing multiple users to communicate via a centralized server.
-
-### 🔹 Features
-- Multi-client support  
-- Broadcast & private messaging  
-- Server-client architecture  
-- Console-based interface  
-
-### 🧠 Concepts Used
-- Java Sockets  
-- Multithreading  
-- BufferedReader & PrintWriter  
-- Client-server communication  
-
----
-
-## 📌 Future Enhancements
-- AI-powered chatbot integration  
-- Online leaderboard systems  
-- Authentication system  
-- Database connectivity  
-- Mobile responsiveness  
+- Conditional responses  
 
 ---
 
@@ -232,5 +251,12 @@ A Java socket-based chat application allowing multiple users to communicate via 
 
 This project is licensed under the MIT License – free to use and modify.
 
+---
+## 🤝 Connect With Me
 
+- **GitHub:** https://github.com/your-username  
+- **LinkedIn:** https://linkedin.com/in/your-profile  
 
+---
+
+⭐ **If you like my work, consider giving this repository a star!**
