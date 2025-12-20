@@ -7,7 +7,7 @@
 
 
 
-# # 📌 Overview
+## 📌 Overview
 
 The Java Console-Based Chat Application is a real-time, multi-user messaging system built using core Java networking and multithreading concepts.
 It allows multiple clients to connect to a central server and exchange messages instantly through the command-line interface.
@@ -31,13 +31,13 @@ This project demonstrates how low-level networking, concurrency, and object-orie
 🔹 Beginner-friendly yet industry-relevant
 
 ## 🛠️ Technologies & Concepts Used
-Category	Technologies
-Language	Java
-Networking	Socket, ServerSocket
-I/O	BufferedReader, InputStreamReader, PrintWriter
-Concurrency	Multithreading (Thread class)
-Architecture	Client–Server Model
-Platform	Cross-platform (Windows / Linux / macOS)
+🔹Category	Technologies
+🔹Language	Java
+🔹Networking	Socket, ServerSocket
+🔹I/O	BufferedReader, InputStreamReader, PrintWriter
+🔹Concurrency	Multithreading (Thread class)
+🔹Architecture	Client–Server Model
+🔹Platform	Cross-platform (Windows / Linux / macOS)
 ### 🧩 Project Structure
 📦 Java-Console-Chat-App
  ┣ 📜 Server.java
@@ -47,25 +47,25 @@ Platform	Cross-platform (Windows / Linux / macOS)
 
 ## 🔹 File Responsibilities
 
-Server.java → Starts the server and listens for incoming client connections
+#### Server.java → Starts the server and listens for incoming client connections
 
-ClientHandler.java → Handles communication for each connected client using threads
+#### ClientHandler.java → Handles communication for each connected client using threads
 
-Client.java → Connects to the server and enables message sending/receiving
+#### Client.java → Connects to the server and enables message sending/receiving
 
 ## ⚙️ How It Works (Architecture)
 
-The Server starts and listens on a specific port
+🔹 The Server starts and listens on a specific port
 
-Each Client connects using a socket
+🔹 Each Client connects using a socket
 
-For every client, a new thread is created
+🔹 For every client, a new thread is created
 
-Messages are transmitted using I/O streams
+🔹 Messages are transmitted using I/O streams
 
-The server relays messages between connected clients
+🔹 The server relays messages between connected clients
 
-This ensures non-blocking, real-time communication.
+🔹 This ensures non-blocking, real-time communication.
 
 ## 🚀 How to Run the Project
 ### ✅ Prerequisites
@@ -113,19 +113,19 @@ You can open multiple terminals to simulate multiple users.
 
 ## 🧠 Learning Outcomes
 
-Through this project, you gain hands-on experience with:
+🔸 Through this project, you gain hands-on experience with:
 
-Java networking fundamentals
+🔸 Java networking fundamentals
 
-Client-server communication
+🔸 Client-server communication
 
-Multithreading and concurrency
+🔸 Multithreading and concurrency
 
-Console-based application design
+🔸 Console-based application design
 
-Object-Oriented Programming principles
+🔸Object-Oriented Programming principles
 
-Real-world backend communication logic
+🔸 Real-world backend communication logic
 
 ## 📈 Future Enhancements
 
