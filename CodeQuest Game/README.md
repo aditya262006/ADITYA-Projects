@@ -25,24 +25,30 @@ Here are the **10 games** that make up the journey:
 6. 🧠 **Crack the Logic**  
 7. ❓ **Tech Riddle**  
 8. 🧑‍💻 **Memory Hacker**  
-9. ☠️ **Hangman** (with difficulty levels + hints)  
-10. 🔢 **Sudoku** (modern UI + win animations)  
+9. ☠️ **Hangman** 
+10. 🔢 **Sudoku**  
 
 ---
 
 ## 🔹 Features
+
 - Dice-based movement system  
 - Game win & loss logic  
 - In-game chatbot for interaction  
 - Clean board-style UI  
-- Restart & replay functionality  
+- Restart & replay functionality
+  
 ---
+
 ## 🧠 Concepts Used
+
 - Game state management  
 - Conditional logic  
 - DOM manipulation  
-- Event-driven programming  
+- Event-driven programming
+  
 ---
+
 ### 🖼️ UI Preview
 Loading Screen Board <img width="1918" height="1031" alt="image" src="https://github.com/user-attachments/assets/fe668ace-fbac-45f2-9507-a5dacfab14ca" />
 
