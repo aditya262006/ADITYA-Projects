@@ -155,6 +155,12 @@ Sudoku Game <img width="571" height="738" alt="image" src="https://github.com/us
 
 Crack The Logic Game <img width="886" height="729" alt="image" src="https://github.com/user-attachments/assets/316d56b8-d608-4641-bebe-a7841a38babf" />
 
+Logic Detective Game <img width="1919" height="1031" alt="image" src="https://github.com/user-attachments/assets/0eb62942-7431-45fa-a5a7-eb530a33f7b9" />
+
+Memory Hacker Game <img width="1916" height="1028" alt="image" src="https://github.com/user-attachments/assets/fd57d1c2-dd03-4bfa-91fc-dd6405e6c906" />
+
+Tech Riddle Game <img width="706" height="515" alt="image" src="https://github.com/user-attachments/assets/91bbfc32-84db-4911-b49a-4b6d8bde121a" />
+
 
 ---
 
