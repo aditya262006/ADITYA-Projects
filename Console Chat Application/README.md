@@ -1,4 +1,4 @@
-💬 Java Console-Based Chat Application
+# 💬 Java Console-Based Chat Application
 
 
 
@@ -7,14 +7,14 @@
 
 
 
-📌 Overview
+# # 📌 Overview
 
 The Java Console-Based Chat Application is a real-time, multi-user messaging system built using core Java networking and multithreading concepts.
 It allows multiple clients to connect to a central server and exchange messages instantly through the command-line interface.
 
 This project demonstrates how low-level networking, concurrency, and object-oriented design work together to form a functional communication system—similar in concept to real-world chat servers.
 
-✨ Key Highlights
+## ✨ Key Highlights
 
 🔹 Real-time text communication
 
@@ -30,7 +30,7 @@ This project demonstrates how low-level networking, concurrency, and object-orie
 
 🔹 Beginner-friendly yet industry-relevant
 
-🛠️ Technologies & Concepts Used
+## 🛠️ Technologies & Concepts Used
 Category	Technologies
 Language	Java
 Networking	Socket, ServerSocket
@@ -38,14 +38,14 @@ I/O	BufferedReader, InputStreamReader, PrintWriter
 Concurrency	Multithreading (Thread class)
 Architecture	Client–Server Model
 Platform	Cross-platform (Windows / Linux / macOS)
-🧩 Project Structure
+### 🧩 Project Structure
 📦 Java-Console-Chat-App
  ┣ 📜 Server.java
  ┣ 📜 Client.java
  ┣ 📜 ClientHandler.java
  ┗ 📜 README.md
 
-🔹 File Responsibilities
+## 🔹 File Responsibilities
 
 Server.java → Starts the server and listens for incoming client connections
 
@@ -53,7 +53,7 @@ ClientHandler.java → Handles communication for each connected client using thr
 
 Client.java → Connects to the server and enables message sending/receiving
 
-⚙️ How It Works (Architecture)
+## ⚙️ How It Works (Architecture)
 
 The Server starts and listens on a specific port
 
@@ -67,8 +67,8 @@ The server relays messages between connected clients
 
 This ensures non-blocking, real-time communication.
 
-🚀 How to Run the Project
-✅ Prerequisites
+## 🚀 How to Run the Project
+### ✅ Prerequisites
 
 Java JDK 8 or above
 
@@ -89,13 +89,17 @@ java Client
 
 You can open multiple terminals to simulate multiple users.
 
-📸 Output Screenshots
+## 📸 Output Screenshots
 🔹 Server Running
 🔹 Multiple Clients Chatting
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a0159fc4-1367-43da-99bb-867297d5f074" />
+<img width="1270" height="552" alt="image" src="https://github.com/user-attachments/assets/1cea5ff7-0eba-49a8-99bd-a308f70733dc" />
+<img width="1360" height="768" alt="image" src="https://github.com/user-attachments/assets/c69fd60e-e83f-44d2-b594-cdd2beadbb54" />
 
-📌 Tip: Replace these with your own screenshots by adding images to a /screenshots folder and updating image paths in this README.
 
-🔐 Features in Detail
+
+
+## 🔐 Features in Detail
 
 ✔️ Handles multiple users concurrently
 
@@ -107,7 +111,7 @@ You can open multiple terminals to simulate multiple users.
 
 ✔️ Lightweight & fast execution
 
-🧠 Learning Outcomes
+## 🧠 Learning Outcomes
 
 Through this project, you gain hands-on experience with:
 
@@ -123,7 +127,7 @@ Object-Oriented Programming principles
 
 Real-world backend communication logic
 
-📈 Future Enhancements
+## 📈 Future Enhancements
 
 🔸 Private (one-to-one) messaging
 
@@ -137,7 +141,7 @@ Real-world backend communication logic
 
 🔸 Encryption for secure communication
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Aditya Gupta
 🎓 B.Tech – Computer Science & Engineering
@@ -145,11 +149,11 @@ Aditya Gupta
 
 Built with dedication to strengthen core Java & networking concepts.
 
-⭐ Support
+##  ⭐ Support
 
 If you found this project useful:
 
-⭐ Star the repository
+## ⭐ Star the repository
 
 🍴 Fork it
 
